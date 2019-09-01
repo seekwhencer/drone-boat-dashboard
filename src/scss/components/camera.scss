@@ -1,0 +1,47 @@
+.camera {
+  width: 50%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+
+  video {
+    width: 100%;
+    margin: 0;
+    display: block;
+  }
+
+  .controls {
+    text-align: center;
+    background-color: $color-bg-primary-2;
+    overflow: hidden;
+
+    .recording-state {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: 1px solid $color-red;
+      border-radius: 4px;
+      padding: 5px 20px;
+      background-color:rgba(0,0,0,0.2);
+      font-weight:bold;
+
+      .symbol {
+        float: right;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        background-color: $color-red;
+        margin-left: 15px;
+      }
+
+    }
+
+    button {
+      text-align: center;
+      margin-right: 1px;
+
+    }
+  }
+
+}

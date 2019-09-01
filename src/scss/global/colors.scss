@@ -1,0 +1,12 @@
+$color-bright: #dddddd;
+
+$color-primary: #17489a;
+$color-bg-primary: desaturate(darken($color-primary, 10% ), 10% );
+$color-bg-primary-1: desaturate(darken($color-primary, 15% ),15% );
+$color-bg-primary-2: desaturate(darken($color-primary, 25% ), 20% );
+
+$color-text: #999999;
+
+$color-bg-mid: #ddd;
+
+$color-red: rgb(152, 5, 12);
