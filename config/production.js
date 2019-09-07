@@ -65,6 +65,7 @@ module.exports = class extends ConfigClass {
                             fs.copyFileSync(`${this.appPath}/dist/prod/js/bundle.js`, `${this.appPath}/docs/js/bundle.js`);
                             fs.copyFileSync(`${this.appPath}/dist/prod/css/bundle.css`, `${this.appPath}/docs/css/bundle.css`);
                             fs.copyFileSync(`${this.appPath}/public/index.html`, `${this.appPath}/docs/index.html`);
+                            fs.copyFileSync(`${this.appPath}/public/index.html`, `${this.appPath}/dist/prod/index.html`);
                         });
                     }
                 }
