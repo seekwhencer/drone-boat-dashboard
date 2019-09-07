@@ -21,6 +21,9 @@ module.exports = class extends ConfigClass {
             module: {
                 rules: [
                     {
+                        test: /\.html?$/,
+                        loader: "template-literals-loader"
+                    },{
                         test: /.scss$/,
                         use: [
                             'style-loader',
