@@ -7,7 +7,7 @@
     "dev": "export ENV=dev && node_modules/.bin/webpack-dev-server --config config/index.js --progress --colors --watch --display-modules ",
     "build": "export ENV=dev && node_modules/.bin/webpack --config config/index.js",
     "build:dev": "export ENV=dev && node_modules/.bin/webpack --config config/index.js",
-    "build:prod": "export ENV=prod && node_modules/.bin/webpack --config config/index.js",
+    "build:prod": "export ENV=prod && ./node_modules/.bin/webpack --config config/index.js",
     "postinstall": "npm run build:prod"
   },
   "author": "",
