@@ -3,6 +3,8 @@
   float: left;
   height: 100%;
   position: relative;
+  border-left: 10px solid $color-ocean;
+  border-right: 10px solid $color-ocean;
 
   div {
     width: 33.3333%;
@@ -13,7 +15,7 @@
 
     .bar {
       position: absolute;
-      background-color: $color-bg-primary;
+      background-color: $color-leaf;
       width: 100%;
       display: block;
       top: 50%;
@@ -61,10 +63,12 @@
     width: 20%;
 
     .bar {
-      background-color: $color-bg-primary-1;
+      background-color: $color-ocean;
     }
+
     .value {
       top: calc(50% - 20px);
+
       b {
         font-size: $fs-r;
       }

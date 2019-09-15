@@ -57,9 +57,9 @@ export default class extends Module {
     subscribe() {
         MQTT.subscribe('movement');
         MQTT.on('movement', data => {
-            this.throttle = data.value;
-            this.left = data.side.left;
-            this.right = data.side.right;
+            this.throttle = data.throttle;
+            this.left = data.left;
+            this.right = data.right;
         });
     }
 

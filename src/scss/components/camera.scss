@@ -1,8 +1,16 @@
 .camera {
-  width: 50%;
   float: left;
   overflow: hidden;
   position: relative;
+
+  width: calc(50% - 1px);
+  margin-left: 1px;
+
+  &:first-child {
+    width: calc(50% - 1px);
+    margin-right: 1px;
+    margin-left: 0px;
+  }
 
   video {
     width: 100%;
@@ -12,18 +20,24 @@
 
   .controls {
     text-align: center;
-    background-color: $color-bg-primary-2;
+    background-color: $color-cloud;
     overflow: hidden;
+    margin-top: 2px;
 
-    .recording-state {
+    .state {
       position: absolute;
       top: 10px;
       right: 10px;
-      border: 1px solid $color-red;
       border-radius: 4px;
       padding: 5px 20px;
-      background-color:rgba(0,0,0,0.2);
-      font-weight:bold;
+      background-color: rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+      opacity: 0;
+      text-shadow: 1px 1px #000000;
+
+      &.active {
+        opacity: 1;
+      }
 
       .symbol {
         float: right;
@@ -31,15 +45,63 @@
         width: 20px;
         height: 20px;
         border-radius: 10px;
-        background-color: $color-red;
         margin-left: 15px;
+        animation: blinker 1s linear infinite;
       }
 
+      @keyframes blinker {
+        50% {
+          opacity: 0.0;
+        }
+      }
+    }
+
+    .detection-state {
+      top: 50px;
+      border: 2px solid $color-leaf-dark;
+
+      .symbol {
+        background-color: $color-leaf-dark;
+      }
+    }
+
+    .recording-state {
+      top: 10px;
+      border: 2px solid $color-red;
+
+      .symbol {
+        background-color: $color-red;
+      }
     }
 
     button {
+
+      &:first-of-type {
+        border-left: 2px solid $color-ocean-bright;
+      }
+
+      font-size: $fs-rm;
+      display: inline;
       text-align: center;
-      margin-right: 1px;
+      margin: 0;
+      background-color: $color-cloud-dark;
+      color: #ffffff;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-right: 2px solid $color-ocean-bright;
+      text-shadow: 1px 1px $color-ocean-bright;
+
+      &:hover {
+        background-color: $color-leaf-bright;
+      }
+
+      &:active {
+        background-color: $color-leaf-dark;
+      }
+
+      &.active {
+        background-color: $color-leaf-dark;
+      }
 
     }
   }

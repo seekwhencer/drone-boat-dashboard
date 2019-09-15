@@ -2,7 +2,7 @@ import Module from "../../Module.js";
 
 import Position from '../Compositions/Position.js';
 import Speed from '../Components/Speed.js';
-import Sensors from '../Components/Sensors.js';
+import Sensors from '../Compositions/Sensors.js';
 
 import TripodTemplate from '../Compositions/Templates/Tripod.html';
 

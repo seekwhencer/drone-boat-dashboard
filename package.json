@@ -12,10 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.0.0",
+    "@tensorflow/tfjs": "^1.2.9",
     "fs-extra": "^8.1.0",
     "mqtt": "^3.0.0",
     "ramda": "^0.26.1",
-    "webpack-cli": "^3.3.5",
+    "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.7.2"
   },
   "devDependencies": {
@@ -27,6 +29,6 @@
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "template-literals-loader": "^1.1.2",
-    "webpack": "^4.39.3"
+    "webpack": "^4.40.2"
   }
 }

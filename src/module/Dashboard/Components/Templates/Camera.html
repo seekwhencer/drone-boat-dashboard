@@ -1,11 +1,14 @@
-<video autoplay="true" preload="auto">
+<video autoplay="true" preload="auto" buffered="false">
     <source src="${url}" type='video/webm; codecs="vp8"' />
 </video>
 <div class="controls">
-    <div class="recording-state">
+    <div class="recording-state state">
         Recording ...
         <i class="symbol"></i>
     </div>
-    <button>record</button>
-    <button>snapshot</button>
+    <div class="detection-state state">
+        Detecting ...
+        <i class="symbol"></i>
+    </div>
+    <button data-id="record">record</button><button  data-id="detection">detect</button><button data-id="snapshot">snapshot</button>
 </div>

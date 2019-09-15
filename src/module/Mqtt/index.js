@@ -1,5 +1,6 @@
 import Module from "../Module.js";
 import * as Mqtt from 'mqtt';
+import Crypto from 'crypto';
 
 export default class extends Module {
     constructor(args) {
@@ -25,7 +26,7 @@ export default class extends Module {
         this.options = {
             host: '192.168.100.100',
             port: '9091',
-            clientId: 'browser',
+            clientId: `browser_${Crypto.createHash('md5').update(`${Date.now()}`).digest("hex")}`,
             keepalive: 1,
             clean: false,
             reconnectPeriod: 1000 * 1

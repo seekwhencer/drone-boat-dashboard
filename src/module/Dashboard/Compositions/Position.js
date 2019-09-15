@@ -16,14 +16,13 @@ export default class extends Module {
             this.latitude = 0;
             this.longitude = 0;
             this.speed = 0;
-            this.delta = 0;
             this.time = false;
 
             this.target = document.getElementById('position');
             this.target.innerHTML = PositionTemplate();
 
             this.targets = {};
-            ['latitude','longitude','speed','delta','time'].forEach(i => {
+            ['latitude','longitude','speed','time'].forEach(i => {
                 this.targets[i] = document.getElementById(`position-${i}`);
                 const payload = {
                     scope: {
@@ -51,7 +50,7 @@ export default class extends Module {
     }
 
     update(){
-        ['latitude','longitude','speed','delta','time'].forEach(i => {
+        ['latitude','longitude','speed','time'].forEach(i => {
             const target = this.targets[i].getElementsByClassName(`value`)[0];
             target.innerHTML = this[i];
         });

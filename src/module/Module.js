@@ -99,4 +99,15 @@ export default class Module {
         })[0];
     };
 
+    getF(field, match, not) {
+        return this.items.filter(item => {
+            if (item[field] === match) {
+                if (not === item[field]) {
+                    return false;
+                }
+                return true;
+            }
+        })[0];
+    };
+
 };

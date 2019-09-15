@@ -85,13 +85,9 @@ export default class Throttle extends Axis {
 
     publish() {
         const payload = {
-            name: this.name,
-            value: this.normalized,
-            eased: this.eased,
-            side: {
-                left: this.left,
-                right: this.right,
-            }
+            throttle: this.normalized,
+            left: this.left,
+            right: this.right
         };
         try {
             MQTT.publish(`movement`, payload);
