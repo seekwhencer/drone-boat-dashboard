@@ -5,10 +5,14 @@ import CameraTemplate from './Templates/Camera.html'
 
 export default class extends Module {
     constructor(args) {
-        super(args);
+        super();
         return new Promise((resolve, reject) => {
+            this.parent = args.parent;
+            this.app = this.parent.app;
+            this.mqtt = this.parent.app.mqtt;
+            this.options = args.options;
+
             this.label = 'CAMERA';
-            this.options = args;
             console.log(this.label, 'INIT', this.options.id);
 
             this.id = this.options.id;
@@ -139,7 +143,7 @@ export default class extends Module {
 
     publish(payload) {
         try {
-            MQTT.publish(`camera`, payload);
+            this.mqtt.publish(`camera`, payload);
         } catch (error) {
             console.log(error);
         }

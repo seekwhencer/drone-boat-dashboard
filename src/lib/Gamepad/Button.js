@@ -3,6 +3,7 @@ import {EventEmitter} from 'events';
 export default class {
     constructor(name, controller, buttonNumber) {
         this.event = new EventEmitter();
+        this.label = 'BUTTON';
         this.name = name;
         this.number = buttonNumber;
         this.controller = controller;
@@ -11,7 +12,7 @@ export default class {
         this.mapValue();
 
         this.on('change', () => {
-            //console.log('>>>>', this.name, 'CHANGED:', this.value);
+            console.log(this.label, '>>>', this.name, 'CHANGED:', this.value);
         });
 
     }

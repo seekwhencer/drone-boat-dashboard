@@ -2,9 +2,13 @@ import Module from "../../Module.js";
 import SpeedTemplate from './Templates/Speed.html';
 
 export default class extends Module {
-    constructor(args) {
-        super(args);
+    constructor(parent) {
+        super();
         return new Promise((resolve, reject) => {
+            this.parent = parent;
+            this.app = this.parent.app;
+            this.mqtt = this.app.mqtt;
+
             this.label = 'SPEED';
             console.log(this.label, 'INIT');
 
@@ -54,8 +58,8 @@ export default class extends Module {
     }
 
     subscribe() {
-        MQTT.subscribe('movement');
-        MQTT.on('movement', data => {
+        this.mqtt.subscribe('movement');
+        this.mqtt.on('movement', data => {
             this.throttle = data.throttle;
             this.left = data.left;
             this.right = data.right;

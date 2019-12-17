@@ -21,6 +21,7 @@
     "fs-extra": "^8.1.0",
     "mqtt": "^3.0.0",
     "node-sass": "^4.13.0",
+    "qs": "^6.9.1",
     "ramda": "^0.26.1",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.1",

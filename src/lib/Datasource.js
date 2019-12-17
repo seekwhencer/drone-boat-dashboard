@@ -1,9 +1,13 @@
 import crypto from 'crypto';
 
 export default class {
-    constructor() {
+    constructor(app) {
         return new Promise((resolve, reject) => {
+            this.app = app;
             this.label = 'DATASOURCE';
+
+            console.log(this.label, '>>> INIT');
+
             this.secret = 'simsalabim';
             this.storage_prefix = 'gamepad_';
             this.storage = localStorage;

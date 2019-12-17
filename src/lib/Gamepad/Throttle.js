@@ -1,14 +1,18 @@
 import Axis from './Axis.js';
 
 export default class Throttle extends Axis {
-    constructor(controller, axisNumber, options, yaw, enableButton, rotationbutton) {
-        super('throttle', controller, axisNumber, options);
+    constructor(args) {
+        super('throttle', args.options.controller, args.options.axisNumber, args.options.throttleScale);
+        this.parent = args.parent;
+        this.app = this.parent.app;
+        this.mqtt = this.app.mqtt;
+
         this.name = 'throttle';
-        this.yaw = yaw;
-        this.enableButton = enableButton;
-        this.rotationButton = rotationbutton;
-        this.left = 0;
-        this.right = 0;
+        this.yaw = args.options.yaw;
+        this.enableButton = args.options.enableButton;
+        this.rotationButton = args.options.rotationButton;
+        this.left = 0.0;
+        this.right = 0.0;
     }
 
     calculateSides() {
@@ -77,7 +81,7 @@ export default class Throttle extends Axis {
         this.emit('change');
     }
 
-    reset(){
+    reset() {
         this.normalized = 0;
         this.left = 0;
         this.right = 0;
@@ -90,7 +94,7 @@ export default class Throttle extends Axis {
             right: this.right
         };
         try {
-            MQTT.publish(`movement`, payload);
+            this.mqtt.publish(`movement`, payload);
         } catch (error) {
             console.log(error);
         }

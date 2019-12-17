@@ -9,19 +9,24 @@
  *
  */
 
-import {EventEmitter} from 'events';
+import Module from '../Module.js';
 import Throttle from './Throttle.js';
 import Yaw from './Yaw.js';
 import Button from './Button.js';
 
-export default class {
-    constructor() {
+export default class extends Module {
+    constructor(app) {
+        super();
         return new Promise((resolve, reject) => {
-            this.event = new EventEmitter();
+            this.app = app;
             this.label = 'GAMEPAD';
+
+            console.log(this.label, 'INIT');
 
             this.haveEvents = 'GamepadEvent' in window;
             this.haveWebkitEvents = 'WebKitGamepadEvent' in window;
+
+            this.controllers = [];
 
             // throttle joystick
             this.options = {
@@ -50,37 +55,10 @@ export default class {
                     }
                 }
             };
-            /*
-                        // gamepad
-                        this.options = {
-                            throttleAxisNumber: 1,
-                            yawAxisNumber: 2,
-                            enableButtonNumber: 6,
-                            rotationButtonNumber: 7,
-                            yawScale: {
-                                in: {
-                                    min: 1,
-                                    max: -1,
-                                },
-                                out: {
-                                    min: -100,
-                                    max: 100,
-                                }
-                            },
-                            throttleScale: {
-                                in: {
-                                    min: 1,
-                                    max: -1,
-                                },
-                                out: {
-                                    min: -100,
-                                    max: 100,
-                                }
-                            }
-                        };*/
 
-
-            this.controllers = {};
+            this.on('connect', gamepad => {
+                console.log(this.label, 'CONNECTED:', gamepad);
+            });
 
             console.log(this.label, 'SEARCHING FOR A GAME CONTROLLER...');
 
@@ -111,11 +89,13 @@ export default class {
     }
 
     connectHandler(e) {
+        this.emit('connect', e.gamepad);
         this.addGamepad(e.gamepad);
     }
 
     disconnectHandler(e) {
         this.removeGamepad(e.gamepad);
+        this.emit('disconnect');
     }
 
     removeGamepad(gamepad) {
@@ -126,29 +106,46 @@ export default class {
         this.controllers[gamepad.index] = gamepad;
         console.log('>>>> CONTROLLERS ADDED', this.controllers);
 
-        const controller = this.controllers[0];
+        this.controller = this.controllers[0];
 
-        this.enableButton = new Button('enable', controller, this.options.enableButtonNumber);
-        this.rotationButton = new Button('rotation', controller, this.options.rotationButtonNumber);
+        /**
+         * The enable button is a press or switch button
+         * to make the vehicle movable.
+         * If this button is not pressed,
+         * the vehicle wont move.
+         */
+        this.enableButton = new Button('enable', this.controller, this.options.enableButtonNumber);
+
+        /**
+         *  the rotation button is the button to
+         *  reverse one motor to rotate the vehicle
+         *  on the place
+         */
+        this.rotationButton = new Button('rotation', this.controller, this.options.rotationButtonNumber);
 
         this.yaw = new Yaw(
-            controller,
+            this.controller,
             this.options.yawAxisNumber,
             this.options.yawScale
         );
 
-        this.throttle = new Throttle(
-            controller,
-            this.options.throttleAxisNumber,
-            this.options.throttleScale,
-            this.yaw,
-            this.enableButton,
-            this.rotationButton
-        );
+        /**
+         * this makes the mqtt stuff
+         */
+        this.throttle = new Throttle({
+            parent: this,
+            options: {
+                controller : this.controller,
+                axisNumber: this.options.throttleAxisNumber,
+                throttleScale: this.options.throttleScale,
+                yaw: this.yaw,
+                enableButton: this.enableButton,
+                rotationButton: this.rotationButton
+            }
+        });
 
         this.throttle.on('change', () => {
             this.emit('change', this.throttle);
-
         });
 
         this.yaw.on('change', () => {
@@ -206,13 +203,5 @@ export default class {
                 }
             }
         }
-    }
-
-    on() {
-        this.event.on.apply(this.event, Array.from(arguments));
-    }
-
-    emit() {
-        this.event.emit.apply(this.event, Array.from(arguments));
     }
 }

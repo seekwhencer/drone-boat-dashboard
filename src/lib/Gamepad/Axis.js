@@ -9,7 +9,6 @@ export default class Axis {
         this.options = options;
         this.value;
         this.normalized = 0;
-
     }
 
     mapValue() {

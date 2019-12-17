@@ -3,9 +3,13 @@ import SensorsTemplate from './Templates/Sensors.html';
 import SensorItemTemplate from '../Components/Templates/SensorItem.html';
 
 export default class extends Module {
-    constructor(args) {
-        super(args);
+    constructor(parent) {
+        super();
         return new Promise((resolve, reject) => {
+            this.parent = parent;
+            this.app = this.parent.app;
+            this.mqtt = this.app.mqtt;
+
             this.label = 'SENSORS';
             console.log(this.label, 'INIT');
 
@@ -50,8 +54,8 @@ export default class extends Module {
     }
 
     subscribe() {
-        MQTT.subscribe('sensors');
-        MQTT.on('sensors', data => {
+        this.mqtt.subscribe('sensors');
+        this.mqtt.on('sensors', data => {
             console.log('>>> SENSOR DATA', data);
             this.fields.forEach(i => {
                 this[i] = data[i];
