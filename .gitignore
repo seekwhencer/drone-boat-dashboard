@@ -1,3 +1,5 @@
-.idea
-.hot
-node_modules
+.idea/
+dist/
+docs/
+.hot/
+node_modules/
