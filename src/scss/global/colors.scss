@@ -6,22 +6,22 @@ $color-leaf: #00635d;
 $color-cloud: #0077bd;
 $color-splash: #446df6;
 
-$color-ocean-dark: desaturate(darken($color-ocean, 5% ), 5% );
-$color-ocean-bright: desaturate(lighten($color-ocean, 3% ), 3% );
-$color-terra-dark: desaturate(darken($color-terra, 3% ), 3% );
-$color-terra-bright: desaturate(lighten($color-terra, 3% ), 3% );
-$color-leaf-dark: desaturate(darken($color-leaf, 3% ), 3% );
-$color-leaf-bright: desaturate(lighten($color-leaf, 3% ), 3% );
-$color-cloud-dark: desaturate(darken($color-cloud, 5% ), 5% );
-$color-cloud-bright: desaturate(lighten($color-cloud, 5% ), 5% );
-$color-splash-dark: desaturate(darken($color-splash, 3% ), 3% );
-$color-splash-bright: desaturate(lighten($color-splash, 3% ), 3% );
+$color-ocean-dark: desaturate(darken($color-ocean, 5%), 5%);
+$color-ocean-bright: desaturate(lighten($color-ocean, 3%), 3%);
+$color-terra-dark: desaturate(darken($color-terra, 3%), 3%);
+$color-terra-bright: desaturate(lighten($color-terra, 3%), 3%);
+$color-leaf-dark: desaturate(darken($color-leaf, 3%), 3%);
+$color-leaf-bright: desaturate(lighten($color-leaf, 3%), 3%);
+$color-cloud-dark: desaturate(darken($color-cloud, 5%), 5%);
+$color-cloud-bright: desaturate(lighten($color-cloud, 5%), 5%);
+$color-splash-dark: desaturate(darken($color-splash, 3%), 3%);
+$color-splash-bright: desaturate(lighten($color-splash, 3%), 3%);
 
 
 $color-primary: $color-ocean;
-$color-bg-primary: desaturate(darken($color-primary, 3% ), 3% );
-$color-bg-primary-1: desaturate(darken($color-primary, 5% ),5% );
-$color-bg-primary-2: desaturate(darken($color-primary, 7% ), 7% );
+$color-bg-primary: desaturate(darken($color-primary, 3%), 3%);
+$color-bg-primary-1: desaturate(darken($color-primary, 5%), 5%);
+$color-bg-primary-2: desaturate(darken($color-primary, 7%), 7%);
 
 $color-text: #999999;
 $color-bg-mid: #ddd;

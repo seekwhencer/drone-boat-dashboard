@@ -32,4 +32,4 @@ export default class extends Module {
     draw(){
         this.target.innerHTML = StageTemplate();
     }
-};
+}

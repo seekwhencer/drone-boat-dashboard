@@ -30,85 +30,86 @@ $landscape: "and (orientation: landscape)";
 $portrait: "and (orientation: portrait)";
 
 @mixin media-tv() {
-  @media #{$media-tv}{
-    @content;
-  }
+    @media #{$media-tv}{
+        @content;
+    }
 }
 
 @mixin media-tv-min() {
-  @media #{$media-tv-min}{
-    @content;
-  }
+    @media #{$media-tv-min}{
+        @content;
+    }
 }
 
 @mixin media-desktop() {
-  @media #{$media-desktop} {
-    @content;
-  }
+    @media #{$media-desktop} {
+        @content;
+    }
 }
 
 @mixin media-desktop-min() {
-  @media #{$media-desktop-min} {
-    @content;
-  }
+    @media #{$media-desktop-min} {
+        @content;
+    }
 }
 
 @mixin media-tablet() {
-  @media #{$media-tablet} {
-    @content;
-  }
+    @media #{$media-tablet} {
+        @content;
+    }
 }
+
 @mixin media-tablet-min() {
-  @media #{$media-tablet-min} {
-    @content;
-  }
+    @media #{$media-tablet-min} {
+        @content;
+    }
 }
 
 @mixin media-tablet-min-max() {
-  @media #{$media-tablet-min-max} {
-    @content;
-  }
+    @media #{$media-tablet-min-max} {
+        @content;
+    }
 }
 
 @mixin media-tablet-max() {
-  @media #{$media-tablet-max} {
-    @content;
-  }
+    @media #{$media-tablet-max} {
+        @content;
+    }
 }
 
 @mixin media-tablet-landscape() {
-  @media #{$media-tablet-landscape} {
-    @content;
-  }
+    @media #{$media-tablet-landscape} {
+        @content;
+    }
 }
 
 @mixin media-smartphone() {
-  @media #{$media-smartphone} {
-    @content;
-  }
+    @media #{$media-smartphone} {
+        @content;
+    }
 }
 
 @mixin media-smartphone-min() {
-  @media #{$media-smartphone-min} {
-    @content;
-  }
+    @media #{$media-smartphone-min} {
+        @content;
+    }
 }
 
 @mixin media-phone() {
-  @media #{$media-phone} {
-    @content;
-  }
+    @media #{$media-phone} {
+        @content;
+    }
 }
 
 @mixin media-phone-min() {
-  @media #{$media-phone-min} {
-    @content;
-  }
+    @media #{$media-phone-min} {
+        @content;
+    }
 }
 
 @mixin media-watch() {
-  @media #{$media-watch} {
-    @content;
-  }
+    @media #{$media-watch} {
+        @content;
+    }
 }
 

@@ -28,6 +28,9 @@ export default class extends Module {
                 }
             });
 
+            this.video = this.target.querySelector('video');
+            this.canvas = this.target.querySelector('canvas');
+
             this.recordButton = this.target.querySelector('button[data-id=record]');
             this.snapshotButton = this.target.querySelector('button[data-id=snapshot]');
             this.detectionButton = this.target.querySelector('button[data-id=detection]');
@@ -75,6 +78,65 @@ export default class extends Module {
         });
     }
 
+    detect() {
+        console.log('>>> DETECTING');
+        this.model
+            .detect(this.video)
+            .then(predictions => {
+                console.log('Predictions: ', predictions);
+                this.renderPredictions(predictions);
+            });
+    }
+
+    detectFrame() {
+        this.model.detect(this.video).then(predictions => {
+            this.renderPredictions(predictions);
+            requestAnimationFrame(() => {
+                this.detectFrame();
+            });
+        });
+    }
+
+    reloadVideo(){
+        this.video.load();
+        this.video.onloadedmetadata = () => {
+            this.video.play();
+            console.log(this.video.srcObject);
+        };
+    }
+
+    renderPredictions(predictions) {
+        const ctx = this.canvas.getContext("2d");
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        // Font options.
+        const font = "16px sans-serif";
+        ctx.font = font;
+        ctx.textBaseline = "top";
+        predictions.forEach(prediction => {
+            const x = prediction.bbox[0];
+            const y = prediction.bbox[1];
+            const width = prediction.bbox[2];
+            const height = prediction.bbox[3];
+            // Draw the bounding box.
+            ctx.strokeStyle = "#00FFFF";
+            ctx.lineWidth = 4;
+            ctx.strokeRect(x, y, width, height);
+            // Draw the label background.
+            ctx.fillStyle = "#00FFFF";
+            const textWidth = ctx.measureText(prediction.class).width;
+            const textHeight = parseInt(font, 10); // base 10
+            ctx.fillRect(x, y, textWidth + 4, textHeight + 4);
+        });
+
+        predictions.forEach(prediction => {
+            const x = prediction.bbox[0];
+            const y = prediction.bbox[1];
+            // Draw the text last to ensure it's on top.
+            ctx.fillStyle = "#000000";
+            ctx.fillText(prediction.class, x, y);
+        });
+    }
+
     publish(payload) {
         try {
             MQTT.publish(`camera`, payload);
@@ -98,6 +160,7 @@ export default class extends Module {
                 this.recordingState.classList.remove('active');
             }
         } catch (e) {
+            ///...
         }
     }
 
@@ -114,6 +177,7 @@ export default class extends Module {
                 this.snapshotButton.classList.remove('active');
             }
         } catch (e) {
+            //..
         }
     }
 
@@ -127,12 +191,22 @@ export default class extends Module {
             if (this.detection === true) {
                 this.detectionButton.classList.add('active');
                 this.detectionState.classList.add('active');
+                this.detectFrame();
             } else {
                 this.detectionButton.classList.remove('active');
                 this.detectionState.classList.remove('active');
             }
         } catch (e) {
+            //..
         }
     }
 
-};
+    get model() {
+        return this._model;
+    }
+
+    set model(data) {
+        this._model = data;
+        this.reloadVideo();
+    }
+}

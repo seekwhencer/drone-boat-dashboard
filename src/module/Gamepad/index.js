@@ -108,7 +108,7 @@ export default class {
             console.log(this.label, '>>> READY!');
             return resolve(this);
         });
-    };
+    }
 
     connectHandler(e) {
         this.addGamepad(e.gamepad);
@@ -215,4 +215,4 @@ export default class {
     emit() {
         this.event.emit.apply(this.event, Array.from(arguments));
     }
-};
+}

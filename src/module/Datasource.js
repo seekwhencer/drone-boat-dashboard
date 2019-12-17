@@ -12,17 +12,18 @@ export default class {
             console.log(this.label, '>>> READY!');
             return resolve(this);
         });
-    };
+    }
 
     getStorageJson(field) {
         if (this.storage[`${this.storage_prefix}${field}`]) {
             try {
                 return JSON.parse(this.storage[`${this.storage_prefix}${field}`]);
             } catch (e) {
+                //..
             }
             return [];
         }
-    };
+    }
 
     setStorageJson(field, data, hash) {
         if (!field || !data)
@@ -35,6 +36,6 @@ export default class {
         } catch (e) {
             console.log('>>> ERROR', e);
         }
-    };
+    }
 
-};
+}

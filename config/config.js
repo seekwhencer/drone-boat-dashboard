@@ -8,10 +8,9 @@ module.exports = class {
         this.appPath = path.resolve(process.env.PWD);
 
         this.defaults = {
-            entry: [
-                './src/app.js',
-                './src/scss/index.scss'
-            ],
+            entry: {
+                app: './src/app.js'
+            },
             target: 'web'
         };
     };

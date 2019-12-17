@@ -97,7 +97,7 @@ export default class Module {
                 return true;
             }
         })[0];
-    };
+    }
 
     getF(field, match, not) {
         return this.items.filter(item => {
@@ -108,6 +108,6 @@ export default class Module {
                 return true;
             }
         })[0];
-    };
+    }
 
-};
+}

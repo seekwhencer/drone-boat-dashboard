@@ -27,7 +27,6 @@ export default class extends Module {
             this.right = 0;
             window.resize();
 
-
             this.subscribe();
             this.emit('ready');
         });
@@ -98,6 +97,4 @@ export default class extends Module {
         this._right = value;
         this.drawValue('right');
     }
-
-
-};
+}

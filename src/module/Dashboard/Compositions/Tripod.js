@@ -55,4 +55,4 @@ export default class extends Module {
         const tripodHeight = screenHeight - camerasHeight;
         this.target.style.height = `${tripodHeight}px`;
     }
-};
+}

@@ -4,7 +4,7 @@ export default class Yaw extends Axis {
     constructor(controller, axisNumber, options) {
         super('yaw', controller, axisNumber, options);
         this.name = 'yaw';
-    };
+    }
 
     get value() {
         return this._value;
@@ -19,5 +19,4 @@ export default class Yaw extends Axis {
         this.normalize();
         this.emit('change');
     }
-
-};
+}

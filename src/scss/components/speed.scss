@@ -1,82 +1,82 @@
 .speed {
-  width: 33.3333%;
-  float: left;
-  height: 100%;
-  position: relative;
-  border-left: 10px solid $color-ocean;
-  border-right: 10px solid $color-ocean;
-
-  div {
     width: 33.3333%;
     float: left;
-    top: 0;
     height: 100%;
     position: relative;
+    border-left: 10px solid $color-ocean;
+    border-right: 10px solid $color-ocean;
 
-    .bar {
-      position: absolute;
-      background-color: $color-leaf;
-      width: 100%;
-      display: block;
-      top: 50%;
-      z-index: 1;
-      transform-origin: top;
-      transform: rotateZ(180deg);
+    div {
+        width: 33.3333%;
+        float: left;
+        top: 0;
+        height: 100%;
+        position: relative;
+
+        .bar {
+            position: absolute;
+            background-color: $color-leaf;
+            width: 100%;
+            display: block;
+            top: 50%;
+            z-index: 1;
+            transform-origin: top;
+            transform: rotateZ(180deg);
+        }
+
+        .value {
+            position: absolute;
+            top: calc(50% - 40px);
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+
+            b {
+                font-size: $fs-l;
+                color: $color-bright;
+                background-color: $color-bg-primary-2;
+                padding: 3px 20px;
+                border-radius: 3px;
+            }
+        }
+
+
+        label {
+            z-index: 3;
+            position: absolute;
+            top: calc(50% + 20px);
+            left: 0;
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+
     }
 
-    .value {
-      position: absolute;
-      top: calc(50% - 40px);
-      width: 100%;
-      text-align: center;
-      z-index: 2;
-
-      b {
-        font-size: $fs-l;
-        color: $color-bright;
-        background-color: $color-bg-primary-2;
-        padding: 3px 20px;
-        border-radius: 3px;
-      }
+    .left {
+        width: calc(40% - 10px);
+        margin-right: 10px;
     }
 
+    .throttle {
+        margin-right: 10px;
+        width: 20%;
 
-    label {
-      z-index: 3;
-      position: absolute;
-      top: calc(50% + 20px);
-      left: 0;
-      width: 100%;
-      text-align: center;
-      display: block;
+        .bar {
+            background-color: $color-ocean;
+        }
+
+        .value {
+            top: calc(50% - 20px);
+
+            b {
+                font-size: $fs-r;
+            }
+        }
     }
 
-  }
-
-  .left {
-    width: calc(40% - 10px);
-    margin-right: 10px;
-  }
-
-  .throttle {
-    margin-right: 10px;
-    width: 20%;
-
-    .bar {
-      background-color: $color-ocean;
+    .right {
+        width: calc(40% - 10px);
     }
-
-    .value {
-      top: calc(50% - 20px);
-
-      b {
-        font-size: $fs-r;
-      }
-    }
-  }
-
-  .right {
-    width: calc(40% - 10px);
-  }
 
 }

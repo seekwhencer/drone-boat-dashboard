@@ -1,8 +1,10 @@
+import './scss/app.scss';
 import './globals.js';
 import DataSource from './module/Datasource';
 import Gamepad from './module/Gamepad/index.js';
 import Mqtt from './module/Mqtt/index.js';
 import Dashboard from './module/Dashboard/index.js';
+
 
 new DataSource().then(datasource => {
     window.DATASOURCE = datasource;

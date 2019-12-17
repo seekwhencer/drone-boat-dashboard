@@ -14,4 +14,4 @@ export default class extends Module {
             this.emit('ready');
         });
     }
-};
+}
