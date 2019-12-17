@@ -10,9 +10,9 @@
  */
 
 import {EventEmitter} from 'events';
-import Throttle from './throttle.js';
-import Yaw from './yaw.js';
-import Button from './button.js';
+import Throttle from './Throttle.js';
+import Yaw from './Yaw.js';
+import Button from './Button.js';
 
 export default class {
     constructor() {
