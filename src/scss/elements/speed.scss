@@ -32,10 +32,10 @@
             z-index: 2;
 
             b {
-                font-size: $fs-l;
+                font-size: $fs-huge;
                 color: $color-bright;
                 background-color: $color-bg-primary-2;
-                padding: 3px 20px;
+                padding: 20px;
                 border-radius: 3px;
             }
         }
@@ -44,7 +44,7 @@
         label {
             z-index: 3;
             position: absolute;
-            top: calc(50% + 20px);
+            top: calc(50% + 30px);
             left: 0;
             width: 100%;
             text-align: center;
@@ -70,7 +70,7 @@
             top: calc(50% - 20px);
 
             b {
-                font-size: $fs-r;
+                font-size: $fs-xxl;
             }
         }
     }

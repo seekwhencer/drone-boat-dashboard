@@ -1,8 +1,18 @@
-@import "./global/base.scss";
-@import "./global/colors.scss";
-@import "./global/typo.scss";
-@import "./mixins/responsive.scss";
-@import "./global/form.scss";
-@import "./global/page.scss";
-@import "./global/components.scss";
-@import "./global/compositions.scss";
+@import "global/base.scss";
+@import "global/colors.scss";
+@import "global/typo.scss";
+@import "global/responsive";
+@import "global/form.scss";
+@import "global/page.scss";
+
+@import "elements/grid";
+@import "elements/header";
+@import "elements/navigation";
+@import "elements/footer";
+
+@import "elements/stage";
+@import "elements/cameras";
+@import "elements/camera";
+@import "elements/speed";
+@import "elements/position";
+@import "elements/sensors";

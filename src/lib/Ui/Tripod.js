@@ -62,7 +62,8 @@ export default class extends Module {
     resize() {
         const screenHeight = window.innerHeight;
         const camerasHeight = this.parent.cameras.target.getBoundingClientRect().height;
-        const tripodHeight = screenHeight - camerasHeight;
+        const headerHeight = this.parent.parent.header.target.getBoundingClientRect().height;
+        const tripodHeight = screenHeight - camerasHeight - headerHeight;
         this.target.style.height = `${tripodHeight}px`;
     }
 }

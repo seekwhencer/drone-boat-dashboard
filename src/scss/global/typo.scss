@@ -1,7 +1,25 @@
-@import url('https://fonts.googleapis.com/css?family=Miriam+Libre:400,700');
+@mixin font-face($style-name, $file, $family, $weight) {
+    $filepath: "/css/fonts/" + $family + "/" + $file;
+    @font-face {
+        font-family: "#{$style-name}";
+        font-weight: $weight;
+        font-display: swap;
+        src: url($filepath + ".woff2") format('woff2');
+    }
+}
 
-$fs-r: 22px;
-$fs-rm: 32px;
-$fs-l: 62px;
-$fs-m: 16px;
-$fs-mm: 18px;
+@include font-face('IBMPlex', 'IBMPlexSans-Thin', 'IBM-Plex', 200);
+@include font-face('IBMPlex', 'IBMPlexSans-Light', 'IBM-Plex', 300);
+@include font-face('IBMPlex', 'IBMPlexSans-Medium', 'IBM-Plex', 400);
+@include font-face('IBMPlex', 'IBMPlexSans-Bold', 'IBM-Plex', 500);
+
+$fs-xxs: 0.6em;
+$fs-xs: 0.7em;
+$fs-s: 1em;
+$fs-m: 1.25em;
+$fs-l: 1.5em;
+$fs-xl: 2em;
+$fs-xxl: 3em;
+$fs-huge: 4em;
+$fs-omg: 6em;
+$fs-jesus: 8em;

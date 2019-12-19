@@ -74,6 +74,7 @@ export default class extends Module {
             };
 
             this.on('ready', () => {
+                console.log(this.label, '>>> READY!');
                 resolve(this);
             });
 
@@ -83,21 +84,6 @@ export default class extends Module {
 
     detect() {
         console.log('>>> DETECTING');
-        this.model
-            .detect(this.video)
-            .then(predictions => {
-                console.log('Predictions: ', predictions);
-                this.renderPredictions(predictions);
-            });
-    }
-
-    detectFrame() {
-        this.model.detect(this.video).then(predictions => {
-            this.renderPredictions(predictions);
-            requestAnimationFrame(() => {
-                this.detectFrame();
-            });
-        });
     }
 
     reloadVideo() {
@@ -162,7 +148,6 @@ export default class extends Module {
             if (this.detection === true) {
                 this.detectionButton.classList.add('active');
                 this.detectionState.classList.add('active');
-                this.detectFrame();
             } else {
                 this.detectionButton.classList.remove('active');
                 this.detectionState.classList.remove('active');
