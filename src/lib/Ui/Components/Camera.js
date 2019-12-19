@@ -33,8 +33,6 @@ export default class extends Module {
             });
 
             this.video = this.target.querySelector('video');
-            this.canvas = this.target.querySelector('canvas');
-
             this.recordButton = this.target.querySelector('button[data-id=record]');
             this.snapshotButton = this.target.querySelector('button[data-id=snapshot]');
             this.detectionButton = this.target.querySelector('button[data-id=detection]');
@@ -107,38 +105,6 @@ export default class extends Module {
             this.video.play();
             console.log(this.video.srcObject);
         };
-    }
-
-    renderPredictions(predictions) {
-        const ctx = this.canvas.getContext("2d");
-        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        // Font options.
-        const font = "16px sans-serif";
-        ctx.font = font;
-        ctx.textBaseline = "top";
-        predictions.forEach(prediction => {
-            const x = prediction.bbox[0];
-            const y = prediction.bbox[1];
-            const width = prediction.bbox[2];
-            const height = prediction.bbox[3];
-            // Draw the bounding box.
-            ctx.strokeStyle = "#00FFFF";
-            ctx.lineWidth = 4;
-            ctx.strokeRect(x, y, width, height);
-            // Draw the label background.
-            ctx.fillStyle = "#00FFFF";
-            const textWidth = ctx.measureText(prediction.class).width;
-            const textHeight = parseInt(font, 10); // base 10
-            ctx.fillRect(x, y, textWidth + 4, textHeight + 4);
-        });
-
-        predictions.forEach(prediction => {
-            const x = prediction.bbox[0];
-            const y = prediction.bbox[1];
-            // Draw the text last to ensure it's on top.
-            ctx.fillStyle = "#000000";
-            ctx.fillText(prediction.class, x, y);
-        });
     }
 
     publish(payload) {

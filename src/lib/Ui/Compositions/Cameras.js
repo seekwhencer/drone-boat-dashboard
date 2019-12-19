@@ -84,7 +84,7 @@ export default class extends Module {
     subscribe() {
         this.mqtt.subscribe('camera');
         this.mqtt.on('camera', data => {
-            console.log('>>>>>>>>>>>>>>>>', data);
+            console.log(this.label, 'RECEIVING', data);
 
             const camera = this.getF('device', data.device);
             ['recording', 'snapshot', 'detection'].forEach(i => {

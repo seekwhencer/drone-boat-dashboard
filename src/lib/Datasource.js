@@ -1,45 +1,54 @@
-import crypto from 'crypto';
-
 export default class {
     constructor(app) {
         return new Promise((resolve, reject) => {
             this.app = app;
             this.label = 'DATASOURCE';
 
-            console.log(this.label, '>>> INIT');
+            console.log(this.label, 'INIT');
 
-            this.secret = 'simsalabim';
-            this.storage_prefix = 'gamepad_';
+            this.secret = this.app.options.secret || 'simsalabim';
+            this.storage_prefix = this.app.options.storage_prefix || 'dbd_';
+            this.cache_age = this.app.options.cache_age || 60 * 60; // seconds * minutes = (one) hour(s)
             this.storage = localStorage;
-            this.cache_age = 60 * 60; // seconds * minutes = (one) hour(s)
 
             console.log(this.label, '>>> READY!');
             return resolve(this);
         });
     }
 
-    getStorageJson(field) {
-        if (this.storage[`${this.storage_prefix}${field}`]) {
-            try {
-                return JSON.parse(this.storage[`${this.storage_prefix}${field}`]);
-            } catch (e) {
-                //..
+    get(field) {
+        console.log(this.label, '>>> GETTING STORAGE FIELD:', field);
+        const key = `${this.storage_prefix}${field}`;
+        const now = parseInt(Date.now() / 1000);
+        if (this.storage[`${key}`]) {
+            const date = parseInt(this.storage[`${key}_date`]);
+            if (date < now - this.cache_age) {
+                return false;
             }
-            return [];
+            try {
+                return JSON.parse(this.storage[`${key}`]);
+            } catch (e) {
+                return [];
+            }
         }
     }
 
-    setStorageJson(field, data, hash) {
+    set(field, data, hash) {
         if (!field || !data)
             return false;
 
+        const key = `${this.storage_prefix}${field}`;
         try {
-            this.storage[`${this.storage_prefix}${field}_date`] = parseInt(Date.now() / 1000);
-            this.storage[`${this.storage_prefix}${field}_hash`] = hash;
-            this.storage[`${this.storage_prefix}${field}`] = JSON.stringify(data);
+            this.storage[`${key}`] = JSON.stringify(data);
+            this.storage[`${key}_date`] = parseInt(Date.now() / 1000);
+            hash ? this.storage[`${key}_hash`] = hash : null;
         } catch (e) {
-            console.log('>>> ERROR', e);
+            console.log(this.label, '>>> ERROR', e);
         }
+    }
+
+    update(field, value){
+        this.set(field, value);
     }
 
 }

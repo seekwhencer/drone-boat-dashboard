@@ -3,9 +3,10 @@ import './Globals.js';
 import QueryString from 'qs';
 import Module from './Module.js';
 import DataSource from './Datasource.js';
-import Gamepad from './Gamepad/index.js';
-import Mqtt from './Mqtt/index.js';
-import Ui from './Ui/index.js';
+import Gamepad from './Gamepad';
+import Mqtt from './Mqtt';
+import Ui from './Ui';
+import Client from './Client';
 
 export default class extends Module {
     constructor(args) {
@@ -13,13 +14,18 @@ export default class extends Module {
         return new Promise((resolve, reject) => {
             this.label = 'DRONE BOAT DASHBOARD';
             this.options = args;
+
             this.options.debug = this.options.debug || false;
             this.options.language = this.options.language || 'de';
-            this.options.target = this.options.target || document.querySelector('body');
+            this.options.secret = this.options.secret || 'simsalabimbam';
+            this.options.storage_prefix = this.options.storage_prefix || 'dbd_';
+            this.options.cache_age = this.options.cache_age || 60 * 60;
 
+            this.options.target = this.options.target || document.querySelector('body');
 
             this.getParams();
             window.dashboardOptions = this.options;
+
             console.log(this.label, '>>> INIT', this.options);
 
             this.target = this.options.target;
@@ -31,10 +37,14 @@ export default class extends Module {
             // entry
             wait(0)
                 .then(() => {
-                    return new DataSource();
+                    return new DataSource(this);
                 })
                 .then(datasource => {
                     this.datasource = datasource;
+                    return new Client(this);
+                })
+                .then(client => {
+                    this.client = client;
                     return new Mqtt(this);
                 })
                 .then(mqtt => {

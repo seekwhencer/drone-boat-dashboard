@@ -94,8 +94,8 @@ export default class extends Module {
     }
 
     disconnectHandler(e) {
-        this.removeGamepad(e.gamepad);
         this.emit('disconnect');
+        this.removeGamepad(e.gamepad);
     }
 
     removeGamepad(gamepad) {
@@ -135,7 +135,7 @@ export default class extends Module {
         this.throttle = new Throttle({
             parent: this,
             options: {
-                controller : this.controller,
+                controller: this.controller,
                 axisNumber: this.options.throttleAxisNumber,
                 throttleScale: this.options.throttleScale,
                 yaw: this.yaw,
@@ -180,7 +180,7 @@ export default class extends Module {
     }
 
     readValues() {
-        this.scanGamepads();
+        //this.scanGamepads();
 
         this.throttle.mapValue();
         this.yaw.mapValue();

@@ -17,7 +17,8 @@
         target: document.querySelector('body'),
         mqtt_host: '192.168.100.100',
         mqtt_port: '9091',
-        mqtt_reconnectPeriod: 1000 * 1
+        mqtt_reconnectPeriod: 1000 * 1,
+        storage_prefix: 'dbc_'
     };
 
     new DASHBOARD(options).then(dashboard => {

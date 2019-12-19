@@ -12,9 +12,9 @@ export default class extends Module {
 
             this.options = {
                 host: this.app.options.mqtt_host || '192.168.100.100',
-                port:  this.app.options.mqtt_port || '9091',
+                port: this.app.options.mqtt_port || '9091',
                 reconnectPeriod: this.app.options.reconnectPeriod || (1000 * 1),
-                clientId: `browser_${Crypto.createHash('md5').update(`${Date.now()}`).digest("hex")}`,
+                clientId: this.app.client.id,
                 keepalive: 1,
                 clean: false
             };
@@ -33,13 +33,16 @@ export default class extends Module {
 
             this.on('connect', connection => {
                 console.log(this.label, '>>> CONNECTED!', connection);
-                this.emit('ready');
+
             });
 
             this.on('ready', () => {
                 console.log(this.label, '>>> READY!');
                 resolve(this);
             });
+
+            //
+            this.emit('ready');
         });
     }
 

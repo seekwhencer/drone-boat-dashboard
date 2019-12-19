@@ -26,7 +26,7 @@ export default class extends Module {
             this.target.innerHTML = PositionTemplate();
 
             this.targets = {};
-            ['latitude','longitude','speed','time'].forEach(i => {
+            ['latitude', 'longitude', 'speed', 'time'].forEach(i => {
                 this.targets[i] = document.getElementById(`position-${i}`);
                 const payload = {
                     scope: {
@@ -46,15 +46,13 @@ export default class extends Module {
 
     draw() {
         const payload = {
-            scope: {
-
-            }
+            scope: {}
         };
 
     }
 
-    update(){
-        ['latitude','longitude','speed','time'].forEach(i => {
+    update() {
+        ['latitude', 'longitude', 'speed', 'time'].forEach(i => {
             const target = this.targets[i].getElementsByClassName(`value`)[0];
             target.innerHTML = this[i];
         });
