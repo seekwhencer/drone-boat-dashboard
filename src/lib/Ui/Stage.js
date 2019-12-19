@@ -14,11 +14,12 @@ export default class extends Module {
             console.log(this.label, 'INIT');
 
             this.on('ready', () => {
+                console.log(this.label, '>>> READY!');
                 resolve(this);
             });
 
-            this.target = document.getElementById('stage');
-            this.draw();
+            this.target = toDOM(StageTemplate());
+            this.app.target.append(this.target);
 
             wait(0)
                 .then(() => {
@@ -34,9 +35,5 @@ export default class extends Module {
                 });
 
         });
-    }
-
-    draw() {
-        this.target.innerHTML = StageTemplate();
     }
 }

@@ -22,8 +22,8 @@ export default class extends Module {
                this[i] = 0;
             });
 
-            this.target = document.getElementById('sensors');
-            this.target.innerHTML = SensorsTemplate();
+            this.target = toDOM(SensorsTemplate());
+            this.parent.target.append(this.target);
 
             this.targets = {};
             this.fields.forEach(i => {

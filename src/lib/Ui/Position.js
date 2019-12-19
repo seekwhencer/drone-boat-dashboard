@@ -22,8 +22,8 @@ export default class extends Module {
             this.speed = 0;
             this.time = false;
 
-            this.target = document.getElementById('position');
-            this.target.innerHTML = PositionTemplate();
+            this.target = toDOM(PositionTemplate());
+            this.parent.target.append(this.target);
 
             this.targets = {};
             ['latitude', 'longitude', 'speed', 'time'].forEach(i => {

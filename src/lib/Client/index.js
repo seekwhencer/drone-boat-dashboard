@@ -11,8 +11,7 @@ export default class extends Module {
 
             console.log(this.label, 'INIT');
 
-            this.id = this.app.datasource.get('client.id');
-            console.log(this.label, '>>> GOT CLIENT ID', this.id);
+            this.id = this.data.get('client.id');
 
             this.options = {};
 
@@ -28,7 +27,7 @@ export default class extends Module {
 
     // refreshing the field date
     update() {
-        this.app.datasource.update('client.id', this.id);
+        this.data.update('client.id', this.id);
     }
 
     get id() {
@@ -42,7 +41,7 @@ export default class extends Module {
             this.update();
         } else {
             this._id = `browser_${Crypto.createHash('md5').update(`${Date.now()}`).digest("hex")}`;
-            this.app.datasource.set('client.id', this.id);
+            this.data.set('client.id', this.id);
             console.log(this.label, '>>> SET NEW CLIENT ID:', this.id);
         }
     }

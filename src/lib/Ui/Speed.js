@@ -16,9 +16,8 @@ export default class extends Module {
                 resolve(this);
             });
 
-
-            this.target = document.getElementById('speed');
-            this.target.innerHTML = SpeedTemplate();
+            this.target = toDOM(SpeedTemplate());
+            this.parent.target.append(this.target);
 
             this.targets = {
                 left: document.getElementById(`speed-left`),

@@ -21,7 +21,8 @@ export default class extends Module {
                 resolve(this);
             });
 
-            this.target = document.getElementById('tripod');
+            this.target = toDOM(TripodTemplate());
+            this.parent.target.append(this.target);
             this.draw();
 
             // resizing on window resize
@@ -35,6 +36,10 @@ export default class extends Module {
             // create thee speed component
             wait(0)
                 .then(() => {
+                    return new Sensors(this);
+                })
+                .then(sensors => {
+                    this.sensors = sensors;
                     return new Speed(this);
                 })
                 .then(speed => {
@@ -43,10 +48,6 @@ export default class extends Module {
                 })
                 .then(position => {
                     this.position = position;
-                    return new Sensors(this);
-                })
-                .then(sensors => {
-                    this.sensors = sensors;
                     this.emit('ready');
                 });
 
@@ -55,13 +56,12 @@ export default class extends Module {
     }
 
     draw() {
-        this.target.innerHTML = TripodTemplate();
         this.resize();
     }
 
     resize() {
         const screenHeight = window.innerHeight;
-        const camerasHeight = document.getElementById('cameras').getBoundingClientRect().height;
+        const camerasHeight = this.parent.cameras.target.getBoundingClientRect().height;
         const tripodHeight = screenHeight - camerasHeight;
         this.target.style.height = `${tripodHeight}px`;
     }

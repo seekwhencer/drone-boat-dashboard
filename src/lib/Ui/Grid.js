@@ -14,14 +14,11 @@ export default class extends Module {
                 resolve(this);
             });
 
-            this.target = document.getElementsByTagName('body')[0];
-            this.draw();
+            this.target = toDOM(GridTemplate());
+            this.app.target.append(this.target);
+            this.app.target = this.target;
 
             this.emit('ready');
         });
-    }
-
-    draw(){
-        this.target.innerHTML = GridTemplate();
     }
 }

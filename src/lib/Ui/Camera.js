@@ -23,14 +23,15 @@ export default class extends Module {
             this.snapshot = false;
             this.detection = false;
 
-            this.target = document.getElementById(this.id);
-            this.target.innerHTML = CameraTemplate({
+            this.target = toDOM(CameraTemplate({
                 scope: {
                     id: this.id,
                     url: `${this.url}?${Crypto.createHash('md5').update(`${this.id}_${Date.now()}`).digest("hex")}`,
                     device: this.device
                 }
-            });
+            }));
+
+            this.parent.target.append(this.target);
 
             this.video = this.target.querySelector('video');
             this.recordButton = this.target.querySelector('button[data-id=record]');
@@ -99,7 +100,7 @@ export default class extends Module {
         });
     }
 
-    reloadVideo(){
+    reloadVideo() {
         this.video.load();
         this.video.onloadedmetadata = () => {
             this.video.play();

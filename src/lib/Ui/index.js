@@ -2,6 +2,7 @@ import Module from "../Module.js";
 import Grid from './Grid.js';
 import Header from './Header.js';
 import Stage from './Stage.js';
+import Footer from './Footer.js';
 
 export default class extends Module {
     constructor(app) {
@@ -30,6 +31,10 @@ export default class extends Module {
                 })
                 .then(stage => {
                     this.stage = stage;
+                    return new Footer(this);
+                })
+                .then(footer => {
+                    this.stage = footer;
                     this.emit('ready');
                 });
 

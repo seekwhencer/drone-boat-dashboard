@@ -1,4 +1,6 @@
 /**
+ * @author Matthias Kallenbach
+ *
  * input controller for a two motored boat.
  * connect as usb game controller
  *
@@ -6,6 +8,8 @@
  * - yaw on axis 0
  * - button 7 as button 6 as the enable button
  * - fire button as button 0 as the the button to rotate the boat on place
+ *
+ * I used the "Speedlink - Black Widow" joystick with a throttle slider
  *
  */
 

@@ -1,4 +1,5 @@
 import Module from "../Module.js";
+import HeaderTemplate from './Templates/Header.html';
 
 export default class extends Module {
     constructor(parent) {
@@ -10,8 +11,12 @@ export default class extends Module {
             console.log(this.label, 'INIT');
 
             this.on('ready', () => {
+                console.log(this.label, '>>> READY!');
                 resolve(this);
             });
+
+            this.target = toDOM(HeaderTemplate());
+            this.app.target.append(this.target);
 
             this.emit('ready');
         });
