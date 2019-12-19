@@ -1,4 +1,4 @@
-import Module from "../../Module.js";
+import Module from "../Module.js";
 import GridTemplate from './Templates/Grid.html';
 
 export default class extends Module {

@@ -1,12 +1,10 @@
-import Module from "../../Module.js";
+import Module from "../Module.js";
 
 export default class extends Module {
-    constructor(parent) {
-        super(parent);
+    constructor(args) {
+        super(args);
         return new Promise((resolve, reject) => {
-            this.parent = parent;
-            this.app = this.parent.app;
-            this.label = 'HEADER';
+            this.label = 'DEBUG';
             console.log(this.label, 'INIT');
 
             this.on('ready', () => {
@@ -16,4 +14,4 @@ export default class extends Module {
             this.emit('ready');
         });
     }
-}
+};

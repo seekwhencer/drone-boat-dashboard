@@ -1,4 +1,4 @@
-import Module from "../../Module.js";
+import Module from "../Module.js";
 import SpeedTemplate from './Templates/Speed.html';
 
 export default class extends Module {

@@ -1,6 +1,6 @@
-import Module from "../../Module.js";
-import Cameras from "../Compositions/Cameras.js";
-import Tripod from "../Compositions/Tripod.js";
+import Module from "../Module.js";
+import Cameras from "./Cameras.js";
+import Tripod from "./Tripod.js";
 
 import StageTemplate from './Templates/Stage.html';
 

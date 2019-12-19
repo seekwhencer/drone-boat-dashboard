@@ -1,6 +1,6 @@
-import Module from "../../Module.js";
+import Module from "../Module.js";
 import SensorsTemplate from './Templates/Sensors.html';
-import SensorItemTemplate from '../Components/Templates/SensorItem.html';
+import SensorItemTemplate from './Templates/SensorItem.html';
 
 export default class extends Module {
     constructor(parent) {

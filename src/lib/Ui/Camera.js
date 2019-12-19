@@ -1,4 +1,4 @@
-import Module from "../../Module.js";
+import Module from "../Module.js";
 import Crypto from 'crypto';
 
 import CameraTemplate from './Templates/Camera.html'

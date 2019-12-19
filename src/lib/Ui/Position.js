@@ -1,6 +1,6 @@
-import Module from "../../Module.js";
+import Module from "../Module.js";
 import PositionTemplate from './Templates/Position.html';
-import PositionItemTemplate from '../Components/Templates/PositionItem.html';
+import PositionItemTemplate from './Templates/PositionItem.html';
 
 export default class extends Module {
     constructor(parent) {

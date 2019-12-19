@@ -1,7 +1,7 @@
 import Module from "../Module.js";
-import Grid from './Compositions/Grid.js';
-import Header from './Compositions/Header.js';
-import Stage from './Compositions/Stage.js';
+import Grid from './Grid.js';
+import Header from './Header.js';
+import Stage from './Stage.js';
 
 export default class extends Module {
     constructor(app) {

@@ -1,5 +1,5 @@
-import Module from "../../Module.js";
-import Camera from "../Components/Camera.js";
+import Module from "../Module.js";
+import Camera from "./Camera.js";
 //import "@tensorflow/tfjs";
 //import "../../../../node_modules/@tensorflow/tfjs/dist/index.js";
 //import * as cocoSsd from "@tensorflow-models/coco-ssd";
