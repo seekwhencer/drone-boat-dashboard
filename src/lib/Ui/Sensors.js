@@ -1,6 +1,6 @@
 import Module from "../Module.js";
+import Sensor from "./Sensor.js";
 import SensorsTemplate from './Templates/Sensors.html';
-import SensorItemTemplate from './Templates/SensorItem.html';
 
 export default class extends Module {
     constructor(parent) {
@@ -17,51 +17,36 @@ export default class extends Module {
                 resolve(this);
             });
 
-            this.fields = ['temperature','co2','nh3','o3','kPa','dust','dust2'];
-            this.fields.forEach(i => {
-               this[i] = 0;
-            });
-
+            this.fields = ['temperature', 'co2', 'nh3', 'o3', 'kPa', 'dust', 'dust2'];
             this.target = toDOM(SensorsTemplate());
             this.parent.target.append(this.target);
 
-            this.targets = {};
-            this.fields.forEach(i => {
-                this.targets[i] = document.getElementById(`sensor-${i}`);
-                const payload = {
-                    scope: {
-                        label: i,
+            this.fields.map(field => {
+                new Sensor({
+                    parent: this,
+                    options: {
+                        field: field,
+                        label: field,
                         value: ''
                     }
-                };
-                this.targets[i].innerHTML = SensorItemTemplate(payload);
+                }).then(sensor => this.items.push(sensor));
             });
 
             this.subscribe();
-            this.draw();
-
             this.emit('ready');
         });
     }
 
-    draw() {}
-
-    update(){
-        this.fields.forEach(i => {
-            const target = this.targets[i].getElementsByClassName(`value`)[0];
-            target.innerHTML = this[i];
-        });
+    update(data) {
+        this.fields.map(field => this.one(field).value = data[field]);
     }
 
     subscribe() {
         this.mqtt.subscribe('sensors');
-        this.mqtt.on('sensors', data => {
-            console.log('>>> SENSOR DATA', data);
-            this.fields.forEach(i => {
-                this[i] = data[i];
-            });
-            this.update();
-        });
+        this.mqtt.on('sensors', data => this.update(data));
     }
 
+    one(field) {
+        return this.getF('field', field);
+    }
 }
