@@ -38,15 +38,35 @@ export default class extends Module {
     }
 
     update(data) {
+        this.online = true;
         this.fields.map(field => this.one(field).value = data[field]);
+    }
+
+    updateStatus(data) {
+        if (data.clientId !== 'sensors')
+            return false;
+
+        data.connected === 1 ? this.online = true : this.online = false;
+
     }
 
     subscribe() {
         this.mqtt.subscribe('sensors');
+        this.mqtt.subscribe('network');
         this.mqtt.on('sensors', data => this.update(data));
+        this.mqtt.on('network', data => this.updateStatus(data));
     }
 
     one(field) {
         return this.getF('field', field);
+    }
+
+    get online() {
+        return this._online;
+    }
+
+    set online(val) {
+        this._online = val;
+        this.online ? this.target.classList.add('online') : this.target.classList.remove('online');
     }
 }
