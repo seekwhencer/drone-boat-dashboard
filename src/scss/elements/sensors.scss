@@ -1,11 +1,16 @@
 .sensors {
-    width: calc(33.3333% - 10px);
+    position: relative;
+    width: 33.3333%;
     float: left;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: start;
+    align-content: start;
 
     .container {
         width: calc(33.3333% - 4px - 4px);
-        float: left;
         overflow: hidden;
         height: 80px;
         color: #ffffff;
@@ -13,8 +18,16 @@
         position: relative;
         border-radius: 10px;
         border: 2px solid $color-cloud-dark;
-        margin-right: 4px;
+        flex: 0 0 auto;
         margin-top: 4px;
+        margin-left: 4px;
+
+        &:after {
+            display: block;
+            content: " placeholder ";
+            margin: 10px;
+            flex: 999 999 auto;
+        }
 
         .inner {
             position: relative;
@@ -52,7 +65,8 @@
 
     :nth-child(3n) {
         &.container {
-            margin-right: 0;
+            width: calc(33.3333% - 4px - 4px - 4px);
+            margin-right: 4px;
         }
     }
 }

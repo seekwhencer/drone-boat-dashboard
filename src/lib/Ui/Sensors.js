@@ -47,12 +47,10 @@ export default class extends Module {
             return false;
 
         data.connected === 1 ? this.online = true : this.online = false;
-
     }
 
     subscribe() {
         this.mqtt.subscribe('sensors');
-        this.mqtt.subscribe('network');
         this.mqtt.on('sensors', data => this.update(data));
         this.mqtt.on('network', data => this.updateStatus(data));
     }

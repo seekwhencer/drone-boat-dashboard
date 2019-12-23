@@ -41,6 +41,8 @@ export default class extends Module {
                 resolve(this);
             });
 
+            this.subscribe('network');
+
             //
             this.emit('ready');
         });

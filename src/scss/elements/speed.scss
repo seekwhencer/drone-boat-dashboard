@@ -1,15 +1,13 @@
 .speed {
-    width: 33.3333%;
+    width: calc(33.3333% - 20px - 20px);
     float: left;
     height: 100%;
     position: relative;
-    border-left: 10px solid $color-ocean;
-    border-right: 10px solid $color-ocean;
+    margin: 0 20px;
 
     div {
         width: 33.3333%;
         float: left;
-        top: 0;
         height: 100%;
         position: relative;
 
@@ -26,17 +24,18 @@
 
         .value {
             position: absolute;
-            top: calc(50% - 40px);
+            top: calc(50% - 80px);
             width: 100%;
             text-align: center;
             z-index: 2;
 
             b {
+                display: inline-block;
                 font-size: $fs-huge;
                 color: $color-bright;
                 background-color: $color-bg-primary-2;
                 padding: 20px;
-                border-radius: 3px;
+                border-radius: 10px;
             }
         }
 
@@ -44,11 +43,13 @@
         label {
             z-index: 3;
             position: absolute;
-            top: calc(50% + 30px);
+            top: calc(50% + 24px);
             left: 0;
             width: 100%;
             text-align: center;
             display: block;
+            font-weight: 100;
+            text-transform: uppercase;
         }
 
     }
@@ -67,11 +68,17 @@
         }
 
         .value {
-            top: calc(50% - 20px);
+            top: calc(50% - 60px);
 
             b {
                 font-size: $fs-xxl;
+                font-weight: 100;
             }
+        }
+
+        label {
+            font-size: $fs-xs;
+            top: calc(50% + 30px);
         }
     }
 

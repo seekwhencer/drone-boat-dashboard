@@ -1,6 +1,6 @@
 import Module from "../Module.js";
 
-import Position from './Position.js';
+import Positions from './Positions.js';
 import Speed from './Speed.js';
 import Sensors from './Sensors.js';
 
@@ -44,7 +44,7 @@ export default class extends Module {
                 })
                 .then(speed => {
                     this.speed = speed;
-                    return new Position(this);
+                    return new Positions(this);
                 })
                 .then(position => {
                     this.position = position;
