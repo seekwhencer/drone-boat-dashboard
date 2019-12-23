@@ -13,6 +13,13 @@
 @include font-face('IBMPlex', 'IBMPlexSans-Medium', 'IBM-Plex', 400);
 @include font-face('IBMPlex', 'IBMPlexSans-Bold', 'IBM-Plex', 500);
 
+@include font-face('Oswald', 'Oswald-ExtraLight', 'Oswald', 100);
+@include font-face('Oswald', 'Oswald-Light', 'Oswald', 200);
+@include font-face('Oswald', 'Oswald-Medium', 'Oswald', 300);
+@include font-face('Oswald', 'Oswald-Regular', 'Oswald', 400);
+@include font-face('Oswald', 'Oswald-SemiBold', 'Oswald', 500);
+@include font-face('Oswald', 'Oswald-Bold', 'Oswald', 600);
+
 $fs-xxs: 0.6em;
 $fs-xs: 0.7em;
 $fs-s: 1em;
