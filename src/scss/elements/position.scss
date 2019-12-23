@@ -1,26 +1,40 @@
 .position {
-    width: calc(33.3333% - 10px);
+    position: relative;
+    width: 33.3333%;
     float: left;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: start;
+    align-content: start;
 
     .container {
-        width: calc(50% - 2px);
-        float: left;
+        width: calc(50% - 4px - 4px);
         overflow: hidden;
-        border-bottom: 2px solid $color-cloud-dark;
-        margin-bottom: 2px;
-        margin-right: 2px;
-        height: 100px;
+        height: 80px;
         color: #ffffff;
         display: block;
         position: relative;
-        background-image: linear-gradient($color-ocean-dark, $color-ocean-bright);
+        border-radius: 10px;
+        border: 2px solid $color-cloud-dark;
+        flex: 0 0 auto;
+        margin-top: 4px;
+        margin-left: 4px;
+
+        &:after {
+            display: block;
+            content: " placeholder ";
+            margin: 10px;
+            flex: 999 999 auto;
+        }
 
         .inner {
+            position: relative;
             display: block;
             overflow: hidden;
             height: 100%;
-            padding: 5px;
+            width: 100%;
             text-transform: uppercase;
             color: #ffffff;
             text-shadow: 1px 1px #000000;
@@ -32,8 +46,9 @@
                 display: block;
                 margin: 0;
                 padding: 0;
-                font-size: $fs-m;
+                font-size: $fs-s;
                 bottom: $fs-xxs;
+                font-weight: 100;
             }
 
             .value {
@@ -42,10 +57,16 @@
                 text-align: center;
                 display: block;
                 font-size: $fs-m;
-                top: $fs-m;
-                font-weight: 500;
+                top: $fs-xxs;
+                font-weight: 600;
             }
         }
+    }
 
+    :nth-child(2n) {
+        &.container {
+            width: calc(50% - 4px - 4px - 4px);
+            margin-right: 4px;
+        }
     }
 }
