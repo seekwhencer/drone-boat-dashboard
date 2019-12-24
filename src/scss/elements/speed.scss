@@ -90,4 +90,38 @@
         width: calc(40% - 10px);
     }
 
+    .direction {
+        top: -75px;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        left: calc(50% - 50px);
+        border-radius: 50px;
+        background-color: $color-ocean-dark;
+        border: 2px solid $color-cloud-dark;
+        transform: rotate(0deg);
+        transform-origin: center center;
+        box-shadow:0 0 100px rgba(0,0,0,1);
+
+        &:after {
+            content:'';
+            background-color:#ffffff;
+            width:20px;
+            height:20px;
+        }
+
+        svg {
+            position: absolute;
+            left: 10px;
+            top: -80px;
+            width: 80px;
+            height: 80px;
+            color: white;
+
+            path {
+                fill: #ffffff;
+            }
+        }
+    }
+
 }

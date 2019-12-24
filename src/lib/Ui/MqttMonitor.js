@@ -23,7 +23,7 @@ export default class extends Module {
             this.app.mqtt.on('message', (topic, message) => this.message(topic, message));
 
             // listen on a navigation menu click
-            this.menuButton = this.ui.header.navigation.getF('field','mqtt monitor');
+            this.menuButton = this.ui.header.navigation.getF('field', 'mqtt monitor');
             this.menuButton.on('click', () => this.toggle());
 
             // listen to the window resize
@@ -35,6 +35,9 @@ export default class extends Module {
     }
 
     message(topic, message) {
+        if (!this.menuButton.active)
+            return;
+
         const row = toDOM(MqttMonitorItemTemplate({
             scope: {
                 topic: topic,
@@ -49,8 +52,7 @@ export default class extends Module {
         this.target.style.height = `${height}px`;
     }
 
-    toggle(){
-        console.log('>>>>>>>>>>>>>', this.menuButton.active);
+    toggle() {
         this.menuButton.active ? this.target.classList.add('active') : this.target.classList.remove('active');
     }
 }

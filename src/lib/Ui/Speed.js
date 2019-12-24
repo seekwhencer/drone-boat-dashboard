@@ -22,14 +22,16 @@ export default class extends Module {
             this.targets = {
                 left: this.target.querySelector(`.left`),
                 throttle: this.target.querySelector(`.throttle`),
-                right: this.target.querySelector(`.right`)
+                right: this.target.querySelector(`.right`),
+                direction: this.target.querySelector(`.direction`),
             };
             this.parent.resize();
 
             this.throttle = 0;
             this.left = 0;
             this.right = 0;
-
+            this.direction = 0;
+            this.drawDirection();
 
             this.subscribe();
             this.emit('ready');
@@ -56,13 +58,41 @@ export default class extends Module {
         }
     }
 
+    drawDirection() {
+        const maxAngle = 45;
+        if (this.left > 0 || this.right > 0) {
+            if (this.left > this.right) {
+                this.direction = 180 - maxAngle - (maxAngle / this.left * this.right);
+            }
+            if (this.right > this.left) {
+                this.direction = maxAngle + (maxAngle / this.right * this.left);
+            }
+        }
+        if (this.left < 0 || this.right < 0) {
+            if (this.left > this.right) {
+                this.direction = 360 - maxAngle - (maxAngle / this.right * this.left);
+            }
+
+            if (this.right > this.left) {
+                this.direction = 180 + maxAngle + (maxAngle / this.left * this.right);
+            }
+        }
+
+        if (this.right === 0 &&  this.left === 0){
+            this.direction = 90;
+        }
+    }
+
     subscribe() {
         this.mqtt.subscribe('movement');
-        this.mqtt.on('movement', data => {
-            this.throttle = data.throttle;
-            this.left = data.left;
-            this.right = data.right;
-        });
+        this.mqtt.on('movement', data => this.update(data));
+    }
+
+    update(data) {
+        this.throttle = data.throttle;
+        this.left = data.left;
+        this.right = data.right;
+        this.drawDirection();
     }
 
     get throttle() {
@@ -99,5 +129,14 @@ export default class extends Module {
 
         this._right = value;
         this.drawValue('right');
+    }
+
+    get direction() {
+        return this._direction;
+    }
+
+    set direction(val) {
+        this._direction = val;
+        this.targets.direction.style.transform = `rotate(${this.direction - 90}deg)`;
     }
 }
