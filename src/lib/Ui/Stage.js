@@ -1,6 +1,7 @@
 import Module from "../Module.js";
 import Cameras from "./Cameras.js";
 import Tripod from "./Tripod.js";
+import MqttMonitor from './MqttMonitor.js';
 
 import StageTemplate from './Templates/Stage.html';
 
@@ -31,6 +32,10 @@ export default class extends Module {
                 })
                 .then(tripod => {
                     this.tripod = tripod;
+                    return new MqttMonitor(this);
+                })
+                .then(mqttmonitor => {
+                    this.mqttmonitor = mqttmonitor;
                     this.emit('ready');
                 });
 

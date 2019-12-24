@@ -1,4 +1,5 @@
 import Module from "../Module.js";
+import Navigation from "./Navigation.js";
 import HeaderTemplate from './Templates/Header.html';
 
 export default class extends Module {
@@ -17,6 +18,8 @@ export default class extends Module {
 
             this.target = toDOM(HeaderTemplate());
             this.app.target.append(this.target);
+
+            new Navigation(this).then(navigation => this.navigation = navigation);
 
             this.emit('ready');
         });

@@ -28,7 +28,12 @@ export default class extends Module {
              * use the topic as event name
              */
             this.on('message', (topic, message) => {
-                this.emit(topic, JSON.parse(message));
+                try{
+                    message = JSON.parse(message);
+                    this.emit(topic, message);
+                } catch(e) {
+                    //...
+                }
             });
 
             this.on('connect', connection => {

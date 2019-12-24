@@ -73,6 +73,29 @@ export default class extends Module {
                 console.log(this.label, 'TOGGLE DETECTION:', this.detection);
             };
 
+            this.video.onloadedmetadata = metadata => {
+                this.video.play();
+            };
+
+            this.video.onended = () => {
+                console.log(this.label, '>>>>>>>>>>>> ENDED', this.url);
+            };
+
+            this.video.onerror = () => {
+                console.log(this.label, '>>>>>>>>>>>> ERRORED', this.url);
+            };
+
+            this.video.onpause = () => {
+                console.log(this.label, '>>>>>>>>>>>> PAUSED', this.url);
+            };
+
+            this.video.onwaiting = () => {
+                console.log(this.label, '>>>>>>>>>>>> WAITNG', this.url);
+            };
+
+            this.video.autoplay = false;
+            this.video.src = this.url;
+
             this.on('ready', () => {
                 console.log(this.label, '>>> READY!');
                 resolve(this);
@@ -86,19 +109,15 @@ export default class extends Module {
         console.log('>>> DETECTING');
     }
 
-    reloadVideo() {
+    reload() {
         this.video.load();
-        this.video.onloadedmetadata = () => {
-            this.video.play();
-            console.log(this.video.srcObject);
-        };
     }
 
     publish(payload) {
         try {
             this.mqtt.publish(`camera`, payload);
         } catch (error) {
-            console.log(error);
+            console.log(this.label, error);
         }
     }
 
@@ -155,14 +174,5 @@ export default class extends Module {
         } catch (e) {
             //..
         }
-    }
-
-    get model() {
-        return this._model;
-    }
-
-    set model(data) {
-        this._model = data;
-        this.reloadVideo();
     }
 }

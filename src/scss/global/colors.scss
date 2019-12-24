@@ -23,6 +23,15 @@ $color-bg-primary: desaturate(darken($color-primary, 3%), 3%);
 $color-bg-primary-1: desaturate(darken($color-primary, 5%), 5%);
 $color-bg-primary-2: desaturate(darken($color-primary, 7%), 7%);
 
+$color-gray-a: #111111;
+$color-gray-b: #333333;
+$color-gray-c: #555555;
+$color-gray-d: #777777;
+
+$color-matte-dark: rgba(0, 0, 0, 0.2);
+$color-matte-darker: rgba(0, 0, 0, 0.4);
+$color-matte-darkest: rgba(0, 0, 0, 0.6);
+
 $color-text: #999999;
 $color-bg-mid: #ddd;
 $color-red: rgb(152, 5, 12);

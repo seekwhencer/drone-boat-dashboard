@@ -50,8 +50,6 @@ export default class extends Module {
                     this.position = position;
                     this.emit('ready');
                 });
-
-            this.emit('ready');
         });
     }
 

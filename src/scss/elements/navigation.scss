@@ -1,0 +1,27 @@
+.navigation {
+    height: 100%;
+    position: relative;
+
+    button {
+        font-size: $fs-s;
+        background-color: $color-cloud-dark;
+        color: #ffffff;
+        text-transform: uppercase;
+        border-right: 2px solid $color-ocean-bright;
+        text-shadow: 1px 1px $color-ocean-bright;
+        height: 100%;
+        display: inline-block;
+
+        &:hover {
+            background-color: $color-leaf-bright;
+        }
+
+        &:active {
+            background-color: $color-leaf-dark;
+        }
+
+        &.active {
+            background-color: $color-leaf-dark;
+        }
+    }
+}
