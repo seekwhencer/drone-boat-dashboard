@@ -93,8 +93,19 @@ export default class extends Module {
                 console.log(this.label, '>>>>>>>>>>>> WAITNG', this.url);
             };
 
+            this.video.onplay = () => {
+                console.log(this.label, '>>>>>>>>>>>> PLAYING', this.url);
+            };
+
+            this.video.onstop = () => {
+                console.log(this.label, '>>>>>>>>>>>> STOPPED', this.url);
+            };
+
             this.video.autoplay = false;
             this.video.src = this.url;
+
+            window.addEventListener('resize', () => this.resize());
+            this.resize();
 
             this.on('ready', () => {
                 console.log(this.label, '>>> READY!');
@@ -174,5 +185,11 @@ export default class extends Module {
         } catch (e) {
             //..
         }
+    }
+
+    resize(){
+        const width = this.target.getBoundingClientRect().width;
+        const height = width / 1.77778;
+        this.video.style.height = `${height}px`;
     }
 }

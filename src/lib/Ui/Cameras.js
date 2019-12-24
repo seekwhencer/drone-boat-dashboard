@@ -70,4 +70,8 @@ export default class extends Module {
             })
         });
     }
+
+    resize() {
+
+    }
 }
