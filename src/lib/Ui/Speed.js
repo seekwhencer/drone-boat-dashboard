@@ -20,15 +20,16 @@ export default class extends Module {
             this.parent.target.append(this.target);
 
             this.targets = {
-                left: document.getElementById(`speed-left`),
-                throttle: document.getElementById(`speed-throttle`),
-                right: document.getElementById(`speed-right`)
+                left: this.target.querySelector(`.left`),
+                throttle: this.target.querySelector(`.throttle`),
+                right: this.target.querySelector(`.right`)
             };
+            this.parent.resize();
 
             this.throttle = 0;
             this.left = 0;
             this.right = 0;
-            window.resize();
+
 
             this.subscribe();
             this.emit('ready');
@@ -37,8 +38,8 @@ export default class extends Module {
 
     drawValue(field) {
         const target = this.targets[field];
-        const valueField = target.getElementsByTagName('b')[0];
-        const bar = target.getElementsByClassName('bar')[0];
+        const valueField = target.querySelector('b');
+        const bar = target.querySelector('.bar');
         valueField.innerHTML = this[field];
 
         if (this[field] > 0) {
@@ -53,7 +54,6 @@ export default class extends Module {
             bar.style.transform = `rotateZ(180deg)`;
             bar.style.height = `0%`;
         }
-
     }
 
     subscribe() {
@@ -70,7 +70,7 @@ export default class extends Module {
     }
 
     set throttle(value) {
-        if(this.throttle === value)
+        if (this.throttle === value)
             return false;
 
         this._throttle = value;
@@ -82,7 +82,7 @@ export default class extends Module {
     }
 
     set left(value) {
-        if(this.left === value)
+        if (this.left === value)
             return false;
 
         this._left = value;
@@ -94,7 +94,7 @@ export default class extends Module {
     }
 
     set right(value) {
-        if(this.right === value)
+        if (this.right === value)
             return false;
 
         this._right = value;

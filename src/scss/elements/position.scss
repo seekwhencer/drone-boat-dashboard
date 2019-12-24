@@ -2,12 +2,12 @@
     position: relative;
     width: 33.3333%;
     float: left;
-    height: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: start;
     align-content: start;
+    padding-top: 20px;
 
     &:after {
         position: absolute;
@@ -18,7 +18,7 @@
         font-size: $fs-xl;
         font-weight: 100;
         text-transform: uppercase;
-        letter-spacing:0.2em;
+        letter-spacing: 0.2em;
     }
 
     &.online {

@@ -25,13 +25,7 @@ export default class extends Module {
             this.parent.target.append(this.target);
             this.draw();
 
-            // resizing on window resize
-            window.onresize = () => {
-                this.resize();
-            };
-            window.resize = () => {
-                this.resize();
-            };
+            window.addEventListener('resize', () => this.resize());
 
             // create thee speed component
             wait(0)
@@ -63,5 +57,6 @@ export default class extends Module {
         const headerHeight = this.parent.parent.header.target.getBoundingClientRect().height;
         const tripodHeight = screenHeight - camerasHeight - headerHeight;
         this.target.style.height = `${tripodHeight}px`;
+        console.log('>>>> SCREEN', screenHeight, 'CAMERAS', camerasHeight, 'HEADER', headerHeight);
     }
 }

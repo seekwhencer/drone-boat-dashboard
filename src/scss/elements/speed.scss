@@ -33,9 +33,11 @@
                 display: inline-block;
                 font-size: $fs-huge;
                 color: $color-bright;
-                background-color: $color-bg-primary-2;
-                padding: 20px;
+                background-color: $color-matte-doom;
+                padding: 0 20px 30px 20px;
                 border-radius: 10px;
+                border: 2px solid $color-cloud-dark;
+
             }
         }
 
@@ -43,7 +45,7 @@
         label {
             z-index: 3;
             position: absolute;
-            top: calc(50% + 24px);
+            top: calc(50% + 10px);
             left: 0;
             width: 100%;
             text-align: center;
@@ -68,17 +70,19 @@
         }
 
         .value {
-            top: calc(50% - 60px);
+            top: calc(50% - 80px);
 
             b {
-                font-size: $fs-xxl;
+                font-size: $fs-xl;
                 font-weight: 100;
+                border: 2px solid $color-cloud-dark;
+                padding: 5px 10px 5px 10px;
             }
         }
 
         label {
             font-size: $fs-xs;
-            top: calc(50% + 30px);
+            top: calc(50% + 15px);
         }
     }
 
