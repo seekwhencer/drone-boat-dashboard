@@ -24,7 +24,24 @@ export default class extends Module {
             }));
             this.parent.target.append(this.target);
 
+            this.button = this.target;
+            this.button.onclick = () => this.toggle();
+
             this.emit('ready');
         });
+    }
+
+    toggle() {
+        this.active ? this.active = false : this.active = true;
+        this.emit('click', this);
+    }
+
+    get active() {
+        return this._active;
+    }
+
+    set active(val) {
+        this._active = val;
+        this.active ? this.button.classList.add('active') : this.button.classList.remove('active');
     }
 }

@@ -8,8 +8,9 @@ export default class extends Module {
         return new Promise((resolve, reject) => {
             this.parent = parent;
             this.app = this.parent.app;
+            this.ui = this.parent.parent;
             this.label = 'MQTT MONITOR';
-            console.log(this.label, 'INIT');
+            console.log(this.label, 'INIT', this.ui);
 
             this.on('ready', () => {
                 resolve(this);
@@ -18,11 +19,17 @@ export default class extends Module {
             this.target = toDOM(MqttMonitorTemplate());
             this.parent.target.append(this.target);
 
-            // listen here for any mqtt message
+            // listen here for all mqtt messages
             this.app.mqtt.on('message', (topic, message) => this.message(topic, message));
 
+            // listen on a navigation menu click
+            this.menuButton = this.ui.header.navigation.getF('field','mqtt monitor');
+            this.menuButton.on('click', () => this.toggle());
+
+            // listen to the window resize
             window.addEventListener('resize', () => this.resize());
             this.resize();
+
             this.emit('ready');
         });
     }
@@ -38,7 +45,12 @@ export default class extends Module {
     }
 
     resize() {
-        const height = this.parent.cameras.target.getBoundingClientRect().height;
+        const height = this.parent.cameras.frontCamera.video.getBoundingClientRect().height;
         this.target.style.height = `${height}px`;
+    }
+
+    toggle(){
+        console.log('>>>>>>>>>>>>>', this.menuButton.active);
+        this.menuButton.active ? this.target.classList.add('active') : this.target.classList.remove('active');
     }
 }

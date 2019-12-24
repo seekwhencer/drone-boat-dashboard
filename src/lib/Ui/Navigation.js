@@ -8,6 +8,8 @@ export default class extends Module {
         return new Promise((resolve, reject) => {
             this.parent = parent;
             this.app = this.parent.app;
+            this.ui = this.parent.parent;
+
             this.label = 'NAVIGATION';
             console.log(this.label, 'INIT');
 
@@ -17,7 +19,7 @@ export default class extends Module {
 
             this.target = toDOM(NavigationTemplate());
             this.parent.target.append(this.target);
-            this.fields = ['movement', 'recordings', 'snapshots', 'status','settings', 'mqtt monitor', 'logs'];
+            this.fields = ['movement', 'recordings', 'snapshots', 'status', 'settings', 'mqtt monitor', 'logs'];
 
             this.fields.map(field => {
                 new NavigationMenu({

@@ -79,6 +79,7 @@ export default class extends Module {
 
             this.video.onended = () => {
                 console.log(this.label, '>>>>>>>>>>>> ENDED', this.url);
+                this.target.classList.remove('playing');
             };
 
             this.video.onerror = () => {
@@ -87,6 +88,7 @@ export default class extends Module {
 
             this.video.onpause = () => {
                 console.log(this.label, '>>>>>>>>>>>> PAUSED', this.url);
+                this.target.classList.remove('playing');
             };
 
             this.video.onwaiting = () => {
@@ -95,10 +97,12 @@ export default class extends Module {
 
             this.video.onplay = () => {
                 console.log(this.label, '>>>>>>>>>>>> PLAYING', this.url);
+                this.target.classList.add('playing');
             };
 
             this.video.onstop = () => {
                 console.log(this.label, '>>>>>>>>>>>> STOPPED', this.url);
+                this.target.classList.remove('playing');
             };
 
             this.video.autoplay = false;

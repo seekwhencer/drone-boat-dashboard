@@ -34,7 +34,7 @@ export default class extends Module {
                     return new Footer(this);
                 })
                 .then(footer => {
-                    this.stage = footer;
+                    this.footer = footer;
                     this.emit('ready');
                 });
 

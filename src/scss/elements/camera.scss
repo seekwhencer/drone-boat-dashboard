@@ -29,6 +29,24 @@
         position: absolute;
     }
 
+    &:before {
+        position: absolute;
+        content: 'camera offline';
+        top: calc(50% - 50px);
+        width: 100%;
+        text-align: center;
+        font-size: $fs-xxl;
+        font-weight: 100;
+        text-transform: uppercase;
+        letter-spacing:0.2em;
+    }
+
+    &.playing {
+        &:before {
+            display: none;
+        }
+    }
+
     .controls {
         text-align: center;
         background-color: $color-cloud;

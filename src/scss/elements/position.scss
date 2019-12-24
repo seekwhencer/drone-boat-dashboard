@@ -11,12 +11,14 @@
 
     &:after {
         position: absolute;
-        content: 'offline';
+        content: 'gps offline';
         width: 100%;
         text-align: center;
-        top: 50px;
-        font-size: $fs-huge;
+        top: calc(50% - 50px);
+        font-size: $fs-xl;
         font-weight: 100;
+        text-transform: uppercase;
+        letter-spacing:0.2em;
     }
 
     &.online {

@@ -5,6 +5,11 @@
     width: 100%;
     overflow-y: auto;
     background-color: $color-matte-darkest;
+    display: none;
+
+    &.active {
+        display: block;
+    }
 
     .monitor-row {
         .monitor-topic {
@@ -17,7 +22,7 @@
         .monitor-message {
             display: inline-block;
             font-weight: 100;
-            letter-spacing: 0.07em;
+            letter-spacing: 0.2em;
         }
     }
 }
