@@ -25,6 +25,9 @@ export default class extends Module {
                 }
             }));
             this.parent.target.append(this.target);
+
+            this.chartElement = this.target.querySelector('.chart');
+
             this.emit('ready');
         });
     }

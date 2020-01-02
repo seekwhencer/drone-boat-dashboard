@@ -37,8 +37,8 @@ export default class extends Module {
             this.recordButton = this.target.querySelector('button[data-id=record]');
             this.snapshotButton = this.target.querySelector('button[data-id=snapshot]');
             this.detectionButton = this.target.querySelector('button[data-id=detection]');
-            this.recordingState = this.target.getElementsByClassName('recording-state')[0];
-            this.detectionState = this.target.getElementsByClassName('detection-state')[0];
+            this.recordingState = this.target.querySelector('.recording-state');
+            this.detectionState = this.target.querySelector('.detection-state');
 
             this.recordButton.onclick = () => {
                 this.recording = !this.recording;
