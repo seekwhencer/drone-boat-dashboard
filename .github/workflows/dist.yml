@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Make Distribution
 on:
     push:
         branches:
@@ -23,6 +23,6 @@ jobs:
               with:
                   ACCESS_TOKEN: ${{ secrets.ACTION_ACCESS_TOKEN }}
                   BASE_BRANCH: master
-                  BRANCH: gh-pages
-                  FOLDER: docs
+                  BRANCH: dist
+                  FOLDER: dist/prod
                   CLEAN: true
