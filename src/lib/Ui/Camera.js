@@ -1,5 +1,6 @@
 import Module from "../Module.js";
 import Crypto from 'crypto';
+import flvjs from 'flv.js';
 
 import CameraTemplate from './Templates/Camera.html'
 
@@ -24,6 +25,11 @@ export default class extends Module {
             this.detection = false;
 
             this.reconnectTimer = false;
+
+            if (flvjs.isSupported()) {
+                console.log('>>>>>>>>>>>>> YAY');
+            }
+
 
             this.target = toDOM(CameraTemplate({
                 scope: {
@@ -75,42 +81,40 @@ export default class extends Module {
             };
 
             this.video = this.target.querySelector('video');
-            this.video.autoplay = false;
-            this.load();
-
-            this.video.onloadedmetadata = metadata => {
-                this.play();
-            };
+            this.player = flvjs.createPlayer({
+                type: 'webm',
+                isLive: true,
+                url: this.url
+            });
 
             this.video.onended = () => {
                 console.log(this.label, '>>>>>>>>>>>> ENDED', this.url);
                 this.target.classList.remove('playing');
                 this.retry();
             };
-
             this.video.onerror = () => {
                 console.log(this.label, '>>>>>>>>>>>> ERRORED', this.url);
                 this.retry();
             };
-
             this.video.onpause = () => {
                 console.log(this.label, '>>>>>>>>>>>> PAUSED', this.url);
                 this.target.classList.remove('playing');
             };
-
             this.video.onwaiting = () => {
                 console.log(this.label, '>>>>>>>>>>>> WAITNG', this.url);
             };
-
             this.video.onplay = () => {
                 console.log(this.label, '>>>>>>>>>>>> PLAYING', this.url);
                 this.target.classList.add('playing');
             };
-
             this.video.onstop = () => {
                 console.log(this.label, '>>>>>>>>>>>> STOPPED', this.url);
                 this.target.classList.remove('playing');
             };
+
+            this.player.attachMediaElement(this.video);
+            this.player.load();
+            this.player.play();
 
             window.addEventListener('resize', () => this.resize());
             this.resize();
@@ -129,9 +133,8 @@ export default class extends Module {
     }
 
     load() {
-        this.video.src = this.url;
-        this.video.preload = 'none';
-        this.video.load();
+        this.player.load();
+        this.player.play();
     }
 
     play() {
