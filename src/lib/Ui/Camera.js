@@ -17,23 +17,24 @@ export default class extends Module {
 
             this.id = this.options.id;
             this.device = this.options.device;
-            this.url = this.options.url;
+            this.url = `${this.options.url}?${Crypto.createHash('md5').update(`${this.id}_${Date.now()}`).digest("hex")}`;
 
             this.recording = false;
             this.snapshot = false;
             this.detection = false;
 
+            this.reconnectTimer = false;
+
             this.target = toDOM(CameraTemplate({
                 scope: {
                     id: this.id,
-                    url: `${this.url}?${Crypto.createHash('md5').update(`${this.id}_${Date.now()}`).digest("hex")}`,
+                    url: '',
                     device: this.device
                 }
             }));
 
             this.parent.target.append(this.target);
 
-            this.video = this.target.querySelector('video');
             this.recordButton = this.target.querySelector('button[data-id=record]');
             this.snapshotButton = this.target.querySelector('button[data-id=snapshot]');
             this.detectionButton = this.target.querySelector('button[data-id=detection]');
@@ -73,17 +74,23 @@ export default class extends Module {
                 console.log(this.label, 'TOGGLE DETECTION:', this.detection);
             };
 
+            this.video = this.target.querySelector('video');
+            this.video.autoplay = false;
+            this.load();
+
             this.video.onloadedmetadata = metadata => {
-                this.video.play();
+                this.play();
             };
 
             this.video.onended = () => {
                 console.log(this.label, '>>>>>>>>>>>> ENDED', this.url);
                 this.target.classList.remove('playing');
+                this.retry();
             };
 
             this.video.onerror = () => {
                 console.log(this.label, '>>>>>>>>>>>> ERRORED', this.url);
+                this.retry();
             };
 
             this.video.onpause = () => {
@@ -105,9 +112,6 @@ export default class extends Module {
                 this.target.classList.remove('playing');
             };
 
-            this.video.autoplay = false;
-            this.video.src = this.url;
-
             window.addEventListener('resize', () => this.resize());
             this.resize();
 
@@ -124,8 +128,23 @@ export default class extends Module {
         console.log('>>> DETECTING');
     }
 
-    reload() {
+    load() {
+        this.video.src = this.url;
+        this.video.preload = 'none';
         this.video.load();
+    }
+
+    play() {
+        console.log(this.label, '>>>>>>>>>>>> PLAYING', this.url);
+        this.video.play();
+    }
+
+    retry() {
+        clearTimeout(this.reconnectTimer);
+        console.log(this.label, '>>>>> RETRYING');
+        this.reconnectTimer = setTimeout(() => {
+            this.load();
+        }, 1000);
     }
 
     publish(payload) {
@@ -191,7 +210,7 @@ export default class extends Module {
         }
     }
 
-    resize(){
+    resize() {
         const width = this.target.getBoundingClientRect().width;
         const height = width / 1.77778;
         this.video.style.height = `${height}px`;
