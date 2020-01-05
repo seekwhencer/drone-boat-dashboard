@@ -26,6 +26,20 @@ export default class extends Module {
                 direction: this.target.querySelector(`.direction`),
                 spinner: this.target.querySelector('.spinner')
             };
+
+            this.targets.direction.onclick = () => {
+                this.app.client.is_mover ? this.app.client.is_mover = false : this.app.client.is_mover = true;
+            };
+
+            this.app.client.on('got_movement', () => {
+                console.log(this.label, '>>> IS MOVER');
+                this.targets.direction.classList.add('is_mover');
+            });
+            this.app.client.on('lost_movement', () => {
+                console.log(this.label, '>>> LOST MOVEMENT');
+                this.targets.direction.classList.remove('is_mover');
+            });
+
             this.parent.resize();
 
             this.throttle = 0;

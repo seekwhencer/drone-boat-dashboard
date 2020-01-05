@@ -75,13 +75,13 @@ module.exports = class extends ConfigClass {
             devServer: {
                 contentBase: ['public', 'dist/dev'],
                 publicPath: '/',
-                compress: true,
+                compress: false,
                 host: '0.0.0.0',
                 port: 9000,
                 headers: {
                     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-                    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
-                    "Access-Control-Allow-Origin": "*"
+                    "Access-Control-Allow-Headers": "Origin, Accept, X-Requested-With, Content-Type, Authorization",
+                    "Access-Control-Allow-Origin": "*",
                 },
                 hot: true,
                 index: 'public/index.html',

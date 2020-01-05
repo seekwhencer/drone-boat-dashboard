@@ -49,6 +49,8 @@ export default class extends Module {
                 })
                 .then(mqtt => {
                     this.mqtt = mqtt;
+                    this.client.mqtt = this.mqtt;
+                    this.client.subscribe();
                     return new Gamepad(this);
                 })
                 .then(gamepad => {

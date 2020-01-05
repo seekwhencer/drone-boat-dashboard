@@ -147,7 +147,7 @@ export default class extends Module {
         console.log(this.label, '>>>>> RETRYING');
         this.reconnectTimer = setTimeout(() => {
             this.load();
-        }, 1000);
+        }, 3000);
     }
 
     publish(payload) {

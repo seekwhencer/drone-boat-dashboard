@@ -88,6 +88,9 @@ export default class Throttle extends Axis {
     }
 
     publish() {
+        if(!this.app.client.is_mover)
+            return;
+
         const payload = {
             throttle: this.normalized,
             left: this.left,

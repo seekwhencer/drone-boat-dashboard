@@ -109,6 +109,11 @@
             height: 20px;
         }
 
+        &.is_mover {
+            background-color: $color-leaf-bright;
+            border: 2px solid $color-leaf-dark;
+        }
+
         .arrow {
             position: absolute;
             left: 10px;
