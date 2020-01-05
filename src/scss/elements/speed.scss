@@ -182,7 +182,7 @@
         .speed {
             opacity: 0.5;
             position: absolute;
-            bottom: 0;
+            top: -50px;
             height: 150px;
             z-index: 1;
             width: 400px;
@@ -190,6 +190,26 @@
             padding-top: 20px;
             margin: 0;
             background-color: $color-matte-dark;
+
+            .value {
+                top: 40px;
+
+                b {
+                    font-size: $fs-xl;
+                }
+            }
+
+            .throttle {
+                .value {
+                    top: 40px;
+                }
+
+                label {
+                    position: absolute;
+                    top: inherit;
+                    bottom: 30px;
+                }
+            }
         }
     }
 }

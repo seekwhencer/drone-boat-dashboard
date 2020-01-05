@@ -290,6 +290,12 @@
             position: absolute;
             width: 100%;
             height: calc(100% - 4px);
+
+            .controls {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
         }
     }
 
