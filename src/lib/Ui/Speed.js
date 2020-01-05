@@ -34,6 +34,9 @@ export default class extends Module {
 
             this.targets.direction.onclick = () => {
                 this.app.client.is_mover ? this.app.client.is_mover = false : this.app.client.is_mover = true;
+                this.app.client.publish({
+                    mover: this.app.client.id
+                });
             };
 
             this.app.client.on('got_movement', () => {

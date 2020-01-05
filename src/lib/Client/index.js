@@ -73,9 +73,6 @@ export default class extends Module {
         this._is_mover = val;
         if (this.is_mover === true) {
             this.emit('got_movement', this);
-            this.publish({
-                mover: this.id
-            });
         } else {
             this.emit('lost_movement', this);
         }

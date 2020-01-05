@@ -88,7 +88,7 @@ export default class Throttle extends Axis {
     }
 
     publish() {
-        if(!this.app.client.is_mover)
+        if (!this.app.client.is_mover)
             return;
 
         const payload = {
@@ -96,10 +96,15 @@ export default class Throttle extends Axis {
             left: this.left,
             right: this.right
         };
+
+        if (this.latestPayload === JSON.stringify(payload))
+            return;
+
         try {
             this.mqtt.publish(`movement`, payload);
+            this.latestPayload = JSON.stringify(payload);
         } catch (error) {
-            console.log(error);
+            console.error(this.label, error);
         }
     }
 }
