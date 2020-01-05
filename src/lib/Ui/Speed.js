@@ -27,6 +27,11 @@ export default class extends Module {
                 spinner: this.target.querySelector('.spinner')
             };
 
+            // append the direction to the front camera
+            this.parent.parent.cameras.frontCamera.direction = this.targets.direction;
+            this.parent.parent.cameras.frontCamera.target.append(this.targets.direction);
+            this.parent.parent.cameras.frontCamera.resize();
+
             this.targets.direction.onclick = () => {
                 this.app.client.is_mover ? this.app.client.is_mover = false : this.app.client.is_mover = true;
             };

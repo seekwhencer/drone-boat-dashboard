@@ -10,7 +10,7 @@
     &:first-child {
         width: calc(50% - 1px);
         margin-right: 1px;
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     video {
@@ -136,6 +136,113 @@
                 background-color: $color-leaf-dark;
             }
 
+        }
+    }
+
+    .direction {
+        bottom: 25%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: $color-ocean-dark;
+        border: 2px solid $color-cloud-dark;
+        transform: rotate(0deg);
+        transform-origin: center center;
+        box-shadow: 0 0 100px rgba(0, 0, 0, 1);
+
+        &:after {
+            content: '';
+            background-color: $color-matte-bright;
+            width: 20px;
+            height: 20px;
+        }
+
+        &.is_mover {
+            background-color: $color-terra;
+            border: 2px solid $color-matte-bloom;
+
+            &:before {
+                content: 'MOVER';
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                line-height: 50px;
+                top: 0;
+                font-size: $fs-xs;
+            }
+
+            &.left, &.right {
+                &:before {
+                    display: none;
+                }
+            }
+
+            .arrow {
+                path {
+                    fill: $color-matte-bloom;
+                }
+            }
+        }
+
+        .arrow {
+            position: absolute;
+            left: -15px;
+            top: -80px;
+            width: 80px;
+            height: 80px;
+            color: white;
+
+            path {
+                fill: $color-matte-brighter;
+            }
+        }
+
+        &.left, &.right {
+            .arrow {
+                display: none;
+            }
+        }
+
+        .spinner {
+            position: absolute;
+            left: -4px;
+            top: -4px;
+            width: 60px;
+            height: 60px;
+            color: white;
+            transform-origin: center;
+            display: none;
+            animation: inherit;
+
+            @keyframes spin-left {
+                to {
+                    transform: rotate(-360deg);
+                }
+            }
+            @keyframes spin-right {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            &.left {
+                animation: spin-left 1.5s linear infinite;
+                display: block;
+
+                .icon {
+                    transform: scaleX(-1);
+                }
+            }
+
+            &.right {
+                animation: spin-right 1.5s linear infinite;
+                display: block;
+            }
+
+            path {
+                fill: #ffffff;
+            }
         }
     }
 

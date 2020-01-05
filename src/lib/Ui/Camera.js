@@ -217,5 +217,7 @@ export default class extends Module {
         const width = this.target.getBoundingClientRect().width;
         const height = width / 1.77778;
         this.video.style.height = `${height}px`;
+        if (this.direction)
+            this.direction.style.left = `${width / 2 - (this.direction.getBoundingClientRect().width / 2)}px`;
     }
 }
