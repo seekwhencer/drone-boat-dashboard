@@ -285,8 +285,6 @@
 .stage {
     &.camera-front, &.camera-rear {
         .camera {
-            top: 0;
-            left: 0;
             position: absolute;
             width: 100%;
             height: calc(100% - 4px);
@@ -302,11 +300,28 @@
     &.camera-front {
         .cameras {
             [data-id=camera-front] {
+                top: 0;
+                left: 0;
                 display: block;
             }
 
             [data-id=camera-rear] {
-                display: none;
+                position: absolute;
+                width: 300px;
+                height: 168px;
+                z-index: 2;
+                right: 20px;
+                bottom: 80px;
+                left: inherit;
+
+                .controls, .osd {
+                    display: none;
+                }
+
+                video {
+                    height: auto;
+                }
+
             }
         }
     }
@@ -314,10 +329,26 @@
     &.camera-rear {
         .cameras {
             [data-id=camera-front] {
-                display: none;
+                position: absolute;
+                width: 300px;
+                height: 168px;
+                z-index: 2;
+                right: 20px;
+                bottom: 80px;
+                left: inherit;
+
+                .controls, .osd {
+                    display: none;
+                }
+
+                video {
+                    height: auto;
+                }
             }
 
             [data-id=camera-rear] {
+                top: 0;
+                left: 0;
                 display: block;
             }
         }

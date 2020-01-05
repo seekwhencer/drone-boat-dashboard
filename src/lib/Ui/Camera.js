@@ -89,7 +89,7 @@ export default class extends Module {
                 target.classList.remove('camera-front');
                 target.classList.remove('camera-rear');
                 this.fullscreen ? target.classList.add(this.id) : target.classList.remove(this.id);
-                this.resize();
+                this.parent.resize();
                 this.parent.parent.tripod.resize();
                 console.log(this.label, 'TOGGLE FULLSCREEN:', this.fullscreen);
             };

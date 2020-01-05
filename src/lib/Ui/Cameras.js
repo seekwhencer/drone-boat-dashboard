@@ -72,6 +72,7 @@ export default class extends Module {
     }
 
     resize() {
-
+        this.frontCamera.resize();
+        this.rearCamera.resize();
     }
 }
