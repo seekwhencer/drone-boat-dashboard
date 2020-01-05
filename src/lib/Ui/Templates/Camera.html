@@ -1,4 +1,4 @@
-<div id="${id}" class="camera">
+<div data-id="${id}" class="camera">
     <video autoplay="false" preload="auto" buffered="false">
         <source src="${url}" type='video/webm; codecs="vp8"'/>
     </video>
@@ -12,5 +12,8 @@
             <i class="symbol"></i>
         </div>
         <button data-id="record">record</button><button data-id="detection">detect</button><button data-id="snapshot">snapshot</button>
+    </div>
+    <div class="osd">
+        <button data-id="fullscreen">fullscreen</button>
     </div>
 </div>

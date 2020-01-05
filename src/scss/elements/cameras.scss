@@ -1,3 +1,16 @@
 .cameras {
     overflow: hidden;
+    margin-top: 2px;
+}
+
+.stage {
+    &.camera-front, &.camera-rear {
+        .cameras {
+            position: absolute;
+            top: 48px;
+            z-index: 1;
+            width: 100%;
+            height: calc(100% - 50px);
+        }
+    }
 }

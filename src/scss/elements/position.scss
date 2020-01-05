@@ -102,3 +102,26 @@
         }
     }
 }
+
+.stage {
+    &.camera-front, &.camera-rear {
+        .position {
+            position: absolute;
+            top: 100px;
+            right: 5px;
+            z-index: 1;
+            width: 160px;
+            padding: 0;
+
+            .container {
+                width: 100%;
+                height: 50px;
+                float: none;
+                font-size: $fs-xs;
+                background-color: $color-matte-darker;
+                flex: 0 0 150px;
+            }
+        }
+    }
+}
+

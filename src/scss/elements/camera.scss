@@ -150,6 +150,7 @@
         transform: rotate(0deg);
         transform-origin: center center;
         box-shadow: 0 0 100px rgba(0, 0, 0, 1);
+        z-index: 1000000;
 
         &:after {
             content: '';
@@ -246,4 +247,73 @@
         }
     }
 
+    .osd {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 100000;
+
+        button {
+            width: $fs-jesus;
+            font-size: $fs-xs;
+            line-height: $fs-xs;
+            display: inline-block;
+            text-align: center;
+            background-color: $color-matte-bright;
+            color: #ffffff;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-shadow: 1px 1px $color-ocean-bright;
+            border: 2px solid $color-matte-darker;
+            margin: 10px 0 0 10px;
+
+            &:hover {
+                background-color: $color-leaf-bright;
+            }
+
+            &:active {
+                background-color: $color-leaf-dark;
+            }
+
+            &.active {
+                background-color: $color-leaf-dark;
+            }
+        }
+    }
+}
+
+.stage {
+    &.camera-front, &.camera-rear {
+        .camera {
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            height: calc(100% - 4px);
+        }
+    }
+
+    &.camera-front {
+        .cameras {
+            [data-id=camera-front] {
+                display: block;
+            }
+
+            [data-id=camera-rear] {
+                display: none;
+            }
+        }
+    }
+
+    &.camera-rear {
+        .cameras {
+            [data-id=camera-front] {
+                display: none;
+            }
+
+            [data-id=camera-rear] {
+                display: block;
+            }
+        }
+    }
 }

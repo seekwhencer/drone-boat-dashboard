@@ -114,3 +114,25 @@
         }
     }
 }
+
+.stage {
+    &.camera-front, &.camera-rear {
+        .sensors {
+            position: absolute;
+            top: 100px;
+            z-index: 1;
+            width: 100px;
+            height: auto;
+            padding: 0;
+
+            .container {
+                width: 100%;
+                height: 50px;
+                float: none;
+                font-size: $fs-xs;
+                background-color: $color-matte-darker;
+            }
+        }
+    }
+}
+

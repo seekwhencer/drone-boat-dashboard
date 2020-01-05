@@ -44,6 +44,9 @@ export default class extends Module {
             this.recordButton = this.target.querySelector('button[data-id=record]');
             this.snapshotButton = this.target.querySelector('button[data-id=snapshot]');
             this.detectionButton = this.target.querySelector('button[data-id=detection]');
+
+            this.fullscreenButton = this.target.querySelector('button[data-id=fullscreen]');
+
             this.recordingState = this.target.querySelector('.recording-state');
             this.detectionState = this.target.querySelector('.detection-state');
 
@@ -80,6 +83,18 @@ export default class extends Module {
                 console.log(this.label, 'TOGGLE DETECTION:', this.detection);
             };
 
+            this.fullscreenButton.onclick = () => {
+                this.fullscreen = !this.fullscreen;
+                const target = this.app.ui.stage.target;
+                target.classList.remove('camera-front');
+                target.classList.remove('camera-rear');
+                this.fullscreen ? target.classList.add(this.id) : target.classList.remove(this.id);
+                this.resize();
+                this.parent.parent.tripod.resize();
+                console.log(this.label, 'TOGGLE FULLSCREEN:', this.fullscreen);
+            };
+
+            // the video elememt
             this.video = this.target.querySelector('video');
             this.player = flvjs.createPlayer({
                 type: 'webm',
@@ -214,10 +229,18 @@ export default class extends Module {
     }
 
     resize() {
-        const width = this.target.getBoundingClientRect().width;
-        const height = width / 1.77778;
-        this.video.style.height = `${height}px`;
-        if (this.direction)
-            this.direction.style.left = `${width / 2 - (this.direction.getBoundingClientRect().width / 2)}px`;
+        if (this.fullscreen) {
+            this.video.style.width = `100%`;
+            this.video.style.height = `auto`;
+            if (this.direction)
+                this.direction.style.left = `calc(50% - ${this.direction.getBoundingClientRect().width / 2}px`;
+        } else {
+            const width = this.target.getBoundingClientRect().width;
+            const height = width / 1.77777777778;
+            this.video.style.height = `${height}px`;
+            if (this.direction)
+                this.direction.style.left = `${width / 2 - (this.direction.getBoundingClientRect().width / 2)}px`;
+        }
+
     }
 }

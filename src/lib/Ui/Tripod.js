@@ -52,11 +52,17 @@ export default class extends Module {
     }
 
     resize() {
-        const screenHeight = window.innerHeight;
-        const camerasHeight = this.parent.cameras.target.getBoundingClientRect().height;
-        const headerHeight = this.parent.parent.header.target.getBoundingClientRect().height;
-        const tripodHeight = screenHeight - camerasHeight - headerHeight;
-        this.target.style.height = `${tripodHeight}px`;
-        console.log('>>>> SCREEN', screenHeight, 'CAMERAS', camerasHeight, 'HEADER', headerHeight);
+        if (!this.parent.cameras.frontCamera.fullscreen && !this.parent.cameras.rearCamera.fullscreen) {
+            const screenHeight = window.innerHeight;
+            const camerasHeight = this.parent.cameras.target.getBoundingClientRect().height;
+            const headerHeight = this.parent.parent.header.target.getBoundingClientRect().height;
+            const tripodHeight = screenHeight - camerasHeight - headerHeight - 2;
+            this.target.style.height = `${tripodHeight}px`;
+            console.log('>>>> SCREEN', screenHeight, 'CAMERAS', camerasHeight, 'HEADER', headerHeight);
+        }
+
+        if (this.parent.cameras.frontCamera.fullscreen || this.parent.cameras.rearCamera.fullscreen) {
+            this.target.style.height = `calc(100% - 100px)`;
+        }
     }
 }
