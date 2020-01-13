@@ -17,7 +17,9 @@
         mqtt_host: '192.168.100.100',
         mqtt_port: '9091',
         mqtt_reconnectPeriod: 1000 * 1,
-        storage_prefix: 'dbc_'
+        storage_prefix: 'dbc_',
+        camera_front_url: 'http://192.168.178.30:8100/two',
+        camera_rear_url: 'http://192.168.178.30:8100/one',
     };
 
     new DASHBOARD(options).then(dashboard => {
