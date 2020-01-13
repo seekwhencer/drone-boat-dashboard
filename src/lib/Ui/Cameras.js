@@ -29,7 +29,7 @@ export default class extends Module {
                         parent: this,
                         options: {
                             id: 'camera-front',
-                            url: 'http://192.168.100.177:8100/two',
+                            url: this.app.options.camera_front_url|| 'http://192.168.100.177:8100/two',
                             device: '/dev/video1'
                         }
                     });
@@ -42,7 +42,7 @@ export default class extends Module {
                         parent: this,
                         options: {
                             id: 'camera-rear',
-                            url: 'http://192.168.100.177:8100/one',
+                            url: this.app.options.camera_rear_url || 'http://192.168.100.177:8100/one',
                             device: '/dev/video0'
                         }
                     });
