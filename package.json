@@ -28,7 +28,7 @@
     "sass-loader": "^8.0.0",
     "smoothie": "^1.35.0",
     "style-loader": "^1.1.1",
-    "stylelint": "^12.0.0",
+    "stylelint": "^15.10.1",
     "stylelint-webpack-plugin": "^1.1.2",
     "template-literals-loader": "^1.1.2",
     "webpack": "^4.41.4",
